@@ -1,0 +1,118 @@
+/*#region Default*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scroll-padding-top: 5rem;
+    }
+    
+    /*To keep footer at bottom of page*/
+    body{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    p{
+    color:white;
+    }
+    
+    h2, h3, h4, h5, h6{
+    color: white;
+    }
+    
+    h1{
+    color: black;
+    }
+    
+    a{
+        color: rgb(235, 210, 69);
+        text-decoration: none;
+    }
+    
+    a:hover{
+        text-decoration:underline;
+    }
+    
+    a:visited{
+        color: rgb(235, 210, 69);
+    }
+    /*#endregion*/
+     
+     /*#region Banner*/
+     .header-banner{
+        width: 100%;
+        height: 25vh;
+        object-fit: cover;
+        display: block;
+    }
+    .header-title{
+        display: none;
+    }
+    /*#endregion*/
+    
+    /*#region Background*/
+    body {
+        background-image: url('../Images/Shiny\ Overlay\(2\).png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    /*#endregion*/
+    
+    .star-icon{
+        color: gold;
+    }
+    
+    .change-elements{
+        text-align: center;
+        margin-bottom: 1vw;
+    }
+    
+    .change-elements select, button{
+        margin-right: 1vw;
+        padding: 3px 30px 3px 15px;
+        background-color: #175743;
+        font-size: 0.7vw;
+        border-radius: 5px;
+        color: #dddddd;
+        cursor: pointer;
+    }
+    
+    /*#region Small Devices*/
+    @media screen and (max-width: 600px) {
+        /*#region banner*/
+        header{
+            background-image: url(../Images/Spongebob-banner-mobile.jpg);
+            padding: 5px;
+        }
+        .header-banner{
+            content: url(../Images/The_SpongeBob_SquarePants_Movie_transparent_logo.webp);
+            width: 20%;
+            max-width: 60px;
+            height: auto;
+            padding: 5px 5px 5px 0px;
+            object-fit: contain;
+            float: left;
+            }
+        .header-title{
+            display: inline-block;
+            font-size: 20px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        /*#endregion*/
+    
+        .change-elements select, button{
+            display: block;
+            font-size: 4vw;
+            width: 80%;
+            text-align: center;
+            margin-top: 3vw;
+            margin-left: auto;
+            margin-right: auto;
+        }    
+    }
+    /*#endregion*/
