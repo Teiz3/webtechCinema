@@ -25,12 +25,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //database setup
-var file = "database/cinema.db";
-var exists = fs.existsSync(file);
-
-var sqlite3 = require("sqlite3").verbose();
-var cinemaDb = new sqlite3.Database(file);
-
 var databaseManager = require('./database/databaseManager');
 app.use('/', databaseManager);
 
