@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var fs = require("fs");
+
 var app = express();
 
 // view engine setup
@@ -21,6 +23,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//database setup
+var file = "database/cinema.db";
+var exists = fs.existsSync(file);
+
+var sqlite3 = require("sqlite3").verbose();
+var cinemaDb = new sqlite3.Database(file);
+
+var databaseManager = require('./database/databaseManager');
+app.use('/', databaseManager);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
