@@ -1,5 +1,10 @@
 extends layout
 
+block navbar 
+  nav(class="navigation-bar")
+    a(class="navigation-bar__button" href="/") Home
+
+
 block content
   h1= title
   p Welcome to #{title}
