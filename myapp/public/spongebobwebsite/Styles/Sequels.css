@@ -1,0 +1,163 @@
+.sequel{
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-right: 20px;
+    color: white;
+}
+
+#sponge-on-the-run{
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.sequel__title{
+    font-weight: bold;
+    font-size: 3.5vw;
+    
+}
+.sequel__subtitle{
+    margin-bottom: 10px;
+    font-size: 1.3vw;
+}
+
+.sequel__grid{
+    display:grid;
+    grid-template-columns: 15vw 40vw 1fr;
+    /* grid-template-rows: 22vw; */
+    background-color: #2a4447;
+    font-size: 1.3vw;
+}
+
+.sequel__poster{
+    width: 100%;
+    height: 100%;
+}
+
+.sequel__trailer{
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin-left: 10px;
+}
+
+.sequel__info{
+    margin-left: 20px;
+}
+
+.sequel__info p, .sequel__info h3{
+    padding: 5px;
+    margin: 5px 10px 5px 10px;
+    border-top: 1px solid white;
+}
+
+.sequel__summary{
+    border-top: none;
+}
+
+.sequel__trailer-text{
+    display: none;
+}
+
+#trailer__icon-star{
+    width: 15px;
+    height: 15px;
+    margin: 5px 0px 0px 5px;
+}
+
+.sequel__table{
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: black;
+    width: 100%;
+    margin-top: 20px;
+    border-spacing: 4px; 
+    font-size: 1.3vw; 
+}
+.sequel__table td{
+    padding: 20px;
+    background-color: #2a4447;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.sequel__table th{
+    background-color: rgb(172, 172, 172);
+    color: black;
+}
+
+.sequel__score{
+    color:gold;
+    font-size: 2vw;
+    width: 20vw;
+}
+
+.sequel__reviews-welcome{
+    display: none;
+}
+
+@media screen and (max-width: 600px){
+    /*#region Table*/
+    .sequel__table{
+        background-color: transparent;
+        border: none;
+    }
+    .sequel__table th{
+        display: none;
+    }
+
+    .sequel__table, .sequel__table tbody, .sequel__table tr, .sequel__table td{
+        display: block;
+        width: 100%;
+    }
+
+    .sequel__table tr{
+        margin-bottom: 50px;
+    }
+
+    .sequel__table td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        margin-bottom: 5px;
+        font-size: 15px;
+    }
+
+    .sequel__table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .sequel__score{
+        font-size: 16px;
+    }
+    /*#endregion*/
+
+    .sequel__grid{
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        font-size: 16px;
+    }
+
+    .sequel__trailer{
+        display: none;
+    }
+
+    .sequel__trailer-text{
+        display: block;
+    }
+
+    .sequel__title{
+        font-size: 7vw;
+    }
+
+    .sequel__subtitle{
+        font-size: 4vw;
+    }
+    
+}

@@ -1,6 +1,6 @@
 .navigation-bar{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: #f5c518;
     text-align: center;
     width: 100%;
@@ -24,15 +24,11 @@
 }
 
 .navigation-bar__button:hover{
-    background-color: #cda412;
+    background-color: #91740b;
 }
 
 .navigation-bar__button:active{
-    background-color: #0f4a58;
-}
-
-.navigation-bar--current-page{
-    background-color: #166c81;
+    background-color: #775f09;
 }
 
 @media screen and (max-width: 600px) {

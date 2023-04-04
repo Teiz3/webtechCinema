@@ -1,0 +1,162 @@
+.index-content{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*#region Trailer*/
+.trailer{
+    margin-top: 50px;
+    padding: 10px 0px;
+    box-shadow: 7px 7px 7px;
+    text-align: center;
+    width: 100%;
+    height: 28.125vw;
+    background-color: #2a4447;
+}
+
+.trailer__video-container{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+#trailer__video{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.trailer__description{
+    width: 50%;
+    height: 100%;
+    float: right;
+    text-align: left;
+    font-size: 1.3vw;
+}
+.trailer__description h2{
+    font-size: 2.5vw;
+    padding: 15px 5px 5px 15px;
+}
+.trailer__description p{
+    padding: 5px;
+    margin: 5px 10px 5px 10px;
+    border-top: 1px solid white;
+}
+/*#endregion*/
+
+/*#region Review & Where-to-Watch*/
+.review-where-to-watch{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    column-gap: 2vw;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    font-size: 1.3vw;
+}
+
+/*pop up with shadow section*/
+.index--floating-content{
+    font-family:Arial, Helvetica, sans-serif;
+    border-radius: 7px;
+    box-shadow: 7px 7px 7px;
+    padding: 15px;
+}
+
+/*#region Review*/
+.review{
+    background-color: #2a4447;
+    width: fit-content;
+    width: 100%;
+    height: fit-content;
+    }
+/*#endregion*/
+
+/*#region Where to watch*/
+.where-to-watch{
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    background-color: #2a4447;
+    padding: 1vw;
+}
+
+.where-to-watch li{
+    color: white;
+}
+
+.where-to-watch__list{
+    margin-left: 10px;
+}
+
+.where-to-watch__link{
+    padding: 5px;
+}
+/*#endregion*/
+/*#endregion*/
+
+
+
+/*#region Medium Devices*/
+@media screen and (max-width: 1000px) {
+    .trailer__description h2{
+        font-size: 2.6vw;
+    }
+    .trailer__description p{
+        font-size: 1.6vw;
+    }
+
+    .review-where-to-watch{
+        font-size: 2vw;
+    }
+
+    .where-to-watch{
+        padding: 20px;
+    }
+}
+/*#endregion*/
+
+/*#region Small Devices*/
+@media screen and (max-width: 600px) {
+    
+    /*TRAILER small screen resize*/
+    .trailer{
+        height: fit-content;
+        box-shadow: none;
+    }
+    .trailer__video-container{
+        width: 100%;
+        height: 56.25vw;
+        display: block;
+    }
+    .trailer__description{
+        width: 100%;
+        height: fit-content;
+        background-color: #1a1a1a;
+    }
+    
+    /*review small screen*/
+    .review{
+        max-width: 90%;
+        margin-left: 5%;
+        margin-top: 5vh;
+        font-size: 16px;
+    }
+
+    .where-to-watch{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 5vh;
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .review-where-to-watch{
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .trailer__description p{
+        font-size: 3vw;
+    }
+}
+/*#endregion*/

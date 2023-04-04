@@ -1,0 +1,96 @@
+.cast-welcome{
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 9vw;
+    font-family: 'Shantell Sans', cursive;
+}
+
+.actors{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5vw;
+    row-gap: 25px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    width: 80vw;
+    font-size: 1vw;
+}
+
+.actors__information{
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background-color: rgb(42, 68, 71);
+    width: 100%;
+    box-shadow: 7px 7px 7px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/*Left side of section*/
+.actors__image{
+    width: 100%;
+    height: auto;
+}
+
+.actors__name{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+/*Right side of section*/
+.actors__role-biography{
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    color:white;
+}
+
+.actors__role{
+    margin-bottom: 25px;
+}
+
+.actors__biography{
+    margin-bottom: 50px;
+}
+
+.actors__imdb-link{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+    
+}
+
+/*medium sized devices*/
+@media screen and (max-width:1000px){
+
+    .actors{
+        width: 80vw;
+        grid-template-columns: 1fr;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+    }
+
+    .actors__information{
+        grid-template-columns: 80vw;
+        width: 80vw;
+        text-align: center;
+    }
+
+    .actors__image{
+        width: 65%;
+        height: auto;
+    }
+
+    .actors__role-biography{
+        margin-bottom: 15px;
+    }
+
+}
+
