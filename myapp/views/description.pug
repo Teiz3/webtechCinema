@@ -1,9 +1,8 @@
 extends layout
 
 block content
-    h1= movie.movie
     script(src="/javascripts/functions.js")
-    //- script.
-        //- const movie = !{jsStringify(movie)}
-
-    //- script(src="/javascripts/moviedescription.js")
+    //- h1= JSON.stringify(movie)
+    script.
+        const movies = !{jsStringify(movie)}
+    script(src="/javascripts/moviedescription.js")
