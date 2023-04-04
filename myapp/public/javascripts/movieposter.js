@@ -11,5 +11,5 @@ function makePoster(movie){
     makeElNode("div", document.body, "", "movie-poster", movie.title);
     makeElNode("img", getElId(movie.title), "", "movie-poster__image", "", {src: "images/" + movie.image, alt: movie.desc});
     makeElNode("div", getElId(movie.title), movie.title, "movie-poster__overlay");
-    // getElId(movie.title).addEventListener("click", )
+    makeElNode("a", getElId(movie.title), "link", "", "", {href: "/movie/" + movie.title});
 }
