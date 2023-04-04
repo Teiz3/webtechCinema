@@ -1,0 +1,57 @@
+.trivia{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 20px;
+}
+
+.trivia__fact-l{
+    box-shadow: 7px 7px 7px;
+    border-radius: 7px;
+    margin-right:30vw;
+    margin-bottom: 20px;
+    display: block;
+    background-color: rgb(42, 68, 71);
+    font-size: 1.5vw;
+}
+.trivia__fact-r{
+    box-shadow: 7px 7px 7px;
+    border-radius: 7px;
+    margin-left: 20vw;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    column-gap: 20px;
+    background-color: rgb(42, 68, 71);
+    font-size: 1.5vw;
+}   
+
+.trivia__images{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media screen and (max-width: 1000px){
+    .trivia__fact-r{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .trivia{
+        margin-left: 0vw;
+        margin-right: 0vw;
+        margin-top: 10px;
+    }
+    .trivia__fact-l{
+        margin-right: 5vw;
+        margin-left: 5vw;
+        font-size: 16px;
+        
+    }
+    .trivia__fact-r{
+        margin-right: 5vw;
+        margin-left: 5vw; 
+        font-size: 16px;
+    }
+}

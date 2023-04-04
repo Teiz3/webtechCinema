@@ -2,9 +2,12 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/general.css')
     link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel='stylesheet', href='/stylesheets/footer.css')
     script(src="javascripts/functions.js")
+    script(defer, src="/javascripts/footer.js")
   body
     include navbar.pug
     block content
+    include footer.pug
