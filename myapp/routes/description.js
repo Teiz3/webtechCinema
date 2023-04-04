@@ -14,8 +14,8 @@ router.get('/:movie', function(req, res, next) {
         if(err){
             throw(err);
         }
-        res.send(rows);
-        // res.render('description', {movie: req.params, title: req.params.movie});
+        // res.send(rows);
+        res.render('description', {movie: rows, title: req.params.movie, jsStringify});
     });
 });
 

@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       throw(err);
     }
     // console.log(rows);
-    res.render('index', { title: 'Express', dbMovies: rows, jsStringify, rows}); //jsStringify, rows
+    res.render('index', { title: 'Express', dbMovies: rows, jsStringify}); //jsStringify, rows
   });
 });
 
