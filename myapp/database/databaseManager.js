@@ -13,15 +13,17 @@ var cinemaDb = new sqlite3.Database(file);
 
 //accessing the db
 cinemaDb.serialize(function(){
-    if(!exists){
+    console.log(exists);
+    // if(!exists){
+        console.log("db setup run");
         //creating the tables
-        cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, PRIMARY KEY(movieid))");
-        cinemaDb.run("CREATE Table RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
+        cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, PRIMARY KEY(movieid))");
+        // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
         
         //connecting dbfill file to fill the database with data
         var dbfill = require("./dbfill");
         dbfill.fillMovies();
-    }
+    // }
 });
 
 cinemaDb.close();

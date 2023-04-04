@@ -7,6 +7,10 @@ block navbar
 
 block content
   h1 Our movies:
+  p= dbMovies
+  each val in dbMovies
+    p= val.title
+    img(src= 'images/' + val.image)
     //- script(src="/javascripts/dbaccess.js")
   //- p Welcome to #{title}
 

@@ -14,6 +14,7 @@ console.log("dbaccess");
 // movieLength();
 
 function movieLength(){
+    console.log("movielengthcode");
     console.log(db.run('SELECT COUNT(*) FROM Movies'));
 }
 
