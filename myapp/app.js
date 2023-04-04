@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var descriptionRouter = require('./routes/description');
 var usersRouter = require('./routes/users');
 
 var fs = require("fs");
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/movie', descriptionRouter);
 app.use('/users', usersRouter);
 
 //database setup
