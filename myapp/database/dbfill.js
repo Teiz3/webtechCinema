@@ -3,7 +3,7 @@ var sqlite3 = require("sqlite3").verbose();
 //data to be put in the database
 const movies = [
     ["Spongebob the movie", "desc", "SpongeBob_the_Movie.jpg"],
-    ["Sponge out of Water", ""],
+    ["Sponge out of Water", "desc", "Spongebob_Movie_2_Sponge_Out_Of_Water.jpg"],
     ["Sponge on the Run", ""],
     ["Intestellar", ""],
     ["Phineas and Ferb Across the 2nd Dimension", ""],

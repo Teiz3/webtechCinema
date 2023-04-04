@@ -1,0 +1,26 @@
+*{box-sizing: border-box;}
+
+/* Container of the poster */
+.movie-poster{
+    position: relative;
+    width: 50%;
+    max-width: 300px;
+    margin: 10px;
+}
+
+/* Image responsiveness */
+.movie-poster__image{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* overlay text */
+.movie-poster__overlay{
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    font-size: calc();
+}
