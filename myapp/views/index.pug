@@ -11,6 +11,6 @@ block content
   each val in dbMovies
     p= val.title
     img(src= 'images/' + val.image)
-    //- script(src="/javascripts/dbaccess.js")
-  //- p Welcome to #{title}
-
+  script.
+    const dbMovies = !{jsStringify(rows)};
+  script(src="/javascripts/movieposter.js")

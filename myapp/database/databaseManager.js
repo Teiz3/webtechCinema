@@ -14,7 +14,7 @@ var cinemaDb = new sqlite3.Database(file);
 //accessing the db
 cinemaDb.serialize(function(){
     console.log(exists);
-    // if(!exists){
+    if(!exists){
         console.log("db setup run");
         //creating the tables
         cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, PRIMARY KEY(movieid))");
@@ -23,7 +23,7 @@ cinemaDb.serialize(function(){
         //connecting dbfill file to fill the database with data
         var dbfill = require("./dbfill");
         dbfill.fillMovies();
-    // }
+    }
 });
 
 cinemaDb.close();
