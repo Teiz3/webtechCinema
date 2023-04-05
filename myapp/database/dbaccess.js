@@ -1,22 +1,22 @@
-// /*
-//     This file is used to store functions that access the database but are not allowed to change the database
-// */
+/*
+    This file is used to store functions that access the database but are not allowed to change the database
+*/
 
-// const { READONLY } = require("sqlite3");
-// var path = require('path');
+const { READONLY } = require("sqlite3");
+var path = require('path');
 
-// // var express = require('express');
+// var express = require('express');
 
-// //get the database
-// var sqlite3 = require("sqlite3").verbose();
-// const db = new sqlite3.Database(path.join(__dirname, 'database/cinema.db'), READONLY);
+//get the database
+var sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database(path.join(__dirname, 'database/cinema.db'), READONLY);
 
-// console.log("dbaccess");
-// // movieLength();
+console.log("dbaccess");
+// movieLength();
 
-// function movieLength(){
-//     console.log("movielengthcode");
-//     console.log(db.run('SELECT COUNT(*) FROM Movies'));
-// }
+function movieLength(){
+    console.log("movielengthcode");
+    console.log(db.run('SELECT COUNT(*) FROM Movies'));
+}
 
-// module.exports = {movieLength};
+module.exports = {movieLength};

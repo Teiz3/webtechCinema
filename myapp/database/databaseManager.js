@@ -25,9 +25,9 @@ cinemaDb.serialize(function(){
         cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, PRIMARY KEY(movieid))");
         // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
         
-        // //connecting dbfill file to fill the database with data
-        // var dbfill = require("./dbfill");
-        // dbfill.fillMovies();
+        //connecting dbfill file to fill the database with data
+        var dbfill = require("./dbfill");
+        dbfill.fillMovies();
     }
 });
 
