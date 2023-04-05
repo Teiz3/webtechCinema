@@ -1,11 +1,12 @@
 //routing and express requirements
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 
 var fs = require("fs");
 
 //getting/creating database
-var file = "database/cinema.db";
+var file = path.join(__dirname, "database/cinema.db");
 var exists = fs.existsSync(file);
 
 var sqlite3 = require("sqlite3").verbose();
@@ -27,5 +28,6 @@ cinemaDb.serialize(function(){
 });
 
 cinemaDb.close();
+
 
 module.exports = router;

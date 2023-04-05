@@ -1,3 +1,4 @@
+var path = require('path');
 var express = require('express');
 var router = express.Router();
 
@@ -5,7 +6,7 @@ const jsStringify = require('js-stringify');
 
 // const { READONLY } = require("sqlite3");
 var sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database('database/cinema.db');
+const db = new sqlite3.Database(path.join(__dirname, 'database/cinema.db'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
