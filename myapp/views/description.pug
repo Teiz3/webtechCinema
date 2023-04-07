@@ -1,10 +1,10 @@
 extends layout
 
 block content
-    script(src="javascripts/functions.js")
-    link(rel="stylesheet" href="stylesheets/moviedescription.css")
+    script(src="../javascripts/functions.js")
+    link(rel="stylesheet" href="../stylesheets/moviedescription.css")
 
     //- h1= JSON.stringify(movie)
     script.
         const movies = !{jsStringify(movie)}
-    script(src="javascripts/moviedescription.js")
+    script(src="../javascripts/moviedescription.js")
