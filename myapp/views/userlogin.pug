@@ -1,15 +1,18 @@
 extends layout 
 
 block content
-    h2 User Login
-    form(action='/action_page.php')
-    label(for='username') Username:
-    br
-    input#username(type='text' name='username' value='')
-    br
-    label(for='password') Password:
-    br
-    input#password(type='text' name='password' value='')
-    br
-    br
-    input(type='submit' value='Submit')
+    link(rel='stylesheet', href='../stylesheets/userlogin.css')
+
+    #userlogin
+        h2 User Login
+        form(action='/action_page.php')
+        label(for='username') Username:
+        br
+        input#username(type='text' name='username' value='')
+        br
+        label(for='password') Password:
+        br
+        input#password(type='text' name='password' value='')
+        br
+        br
+        input(type='submit' value='Submit')

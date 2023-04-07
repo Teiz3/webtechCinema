@@ -22,7 +22,7 @@ cinemaDb.serialize(function(){
         console.log("dbmanger if(!exists) running");
         console.log("db setup run");
         //creating the tables
-        cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, PRIMARY KEY(movieid))");
+        cinemaDb.run("CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))");
         // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
         
         //connecting dbfill file to fill the database with data

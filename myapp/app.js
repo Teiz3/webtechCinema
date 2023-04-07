@@ -7,6 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var descriptionRouter = require('./routes/description');
 var usersRouter = require('./routes/users');
+var loginRouter = require('./routes/userlogin');
+var signupRouter = require('./routes/usersignup');
+var databaseRouter = require('./routes/database');
 
 var fs = require("fs");
 
@@ -25,6 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/movie', descriptionRouter);
 app.use('/users', usersRouter);
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+app.use('/db', databaseRouter);
 
 //database setup
 var databaseManager = require('./database/databaseManager');

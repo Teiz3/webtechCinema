@@ -1,32 +1,40 @@
 extends layout 
 
 block content
-    h2 User Sign Up
-    form(action='/action_page.php')
-    label(for='fullname') Full name:
-    br
-    input#fullname(type='text' name='fullname' value='')
-    br
-    label(for='password') Password:
-    br
-    input#password(type='text' name='password' value='')
-    br
-    label(for='email') Email:
-    br
-    input#email(type='text' name='email' value='')
-    br
-    label(for='username') Username:
-    br
-    input#username(type='text' name='username' value='')
-    br
-    label(for='adress') Adress:
-    br
-    input#adress(type='text' name='adress' value='')
-    br
-    label(for='creditcard') Creditcard:
-    br
-    input#creditcard(type='text' name='creditcard' value='')
-    br
+    link(rel='stylesheet', href='../stylesheets/usersignup.css')
 
-    br
-    input(type='submit' value='Submit')
+    #usersignup
+        #gridleft
+            h2 User Sign Up
+            form(action='/action_page.php')
+            label(for='fullname') Full name:
+            br
+            input#fullname(type='text' name='fullname' value='')
+            br
+            label(for='username') Username:
+            br
+            input#username(type='text' name='username' value='')
+            br
+            label(for='password') Password:
+            br
+            input#password(type='text' name='password' value='')
+            br
+            label(for='rpassword') Repeat password:
+            br
+            input#rpassword(type='text' name='rpassword' value='')
+        #gridright
+            br
+            label(for='email') Email:
+            br
+            input#email(type='text' name='email' value='')
+            br
+            label(for='adress') Adress:
+            br
+            input#adress(type='text' name='adress' value='')
+            br
+            label(for='creditcard') Creditcard:
+            br
+            input#creditcard(type='text' name='creditcard' value='')
+            br
+            br
+            input(type='submit' value='Submit')

@@ -12,6 +12,9 @@ function makeElNode(elementType, parent=document.body, text, className, idName, 
             newNode.setAttribute(attribute, attributes[attribute]);
         }
     }
+    if(!parent){
+        parent = document.body;
+    }
     parent.appendChild(newNode);
 }
 
