@@ -8,9 +8,10 @@ console.log("database.js router file: " + file);
 const db = new sqlite3.Database(file);
 
 router.get('/', function(req, res, next){
-    const page = req.query.page;
-    const limit = req.query.limit;
-    let sql = 'SELECT * FROM Movies WHERE Movies.movieid =' + '"' + page + '"';
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    let sql = 'SELECT * FROM Movies WHERE Movies.movieid BETWEEN ' + page*limit + ' AND ' + (page + 1)*limit;
+    // console.log("database.js router sql: " + sql);
     db.all(sql, [], (err, rows) => {
       if(err){
         throw(err);
