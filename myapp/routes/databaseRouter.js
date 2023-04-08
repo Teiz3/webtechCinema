@@ -20,6 +20,20 @@ router.get('/', function(req, res, next){
       res.json(JSON.stringify(rows));
     })
   })
+
+  router.get('/schedule', function(req, res, next){
+    const weekDay = req.query.weekday;
+    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE weekday = ?';
+    // console.log("database.js router sql: " + sql);
+    db.all(sqlSchedule, [weekDay], (err, rows) => {
+      if(err){
+        throw(err);
+      }
+      //   console.log(rows);
+      res.json(JSON.stringify(rows));
+    })
+  })
+
   
   router.get('/desc', function(req, res, next){
     console.log("db/desc router activated");

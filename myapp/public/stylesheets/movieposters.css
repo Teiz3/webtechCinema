@@ -39,7 +39,7 @@
     text-align: center;
 }
 
-#pag__ctrl button{
+#pag__ctrl button, .schedule-buttons button{
     padding: 10px;
     font-weight: bold;
     font-size: 2vw;
@@ -50,6 +50,24 @@
     margin-right: 0.2vw;
 }
 
+.schedule-container{
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 3vw;
+}
+
+.schedule-buttons{
+    margin-bottom: 5vw;
+}
+
+.hr{
+    margin-top: 3vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    height: 1px;
+    background-color: #f5c518;
+    border: none;
+}
 #pag__ctrl .pag__ctrl__1{
     
 }

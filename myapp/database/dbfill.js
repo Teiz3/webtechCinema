@@ -1,7 +1,7 @@
 var path = require('path');
 var sqlite3 = require("sqlite3").verbose();
 
-//data to be put in the database
+//data to be put in the movie table
 const movies = [
     ["Spongebob the movie", "SpongeBob SquarePants takes leave from the town of Bikini Bottom in order to track down King Neptune's stolen crown.", "SpongeBob_the_Movie.jpg", "https://www.youtube.com/embed/47ceXAEr2Oo", "47ceXAEr2Oo"],
     ["Sponge out of Water", "When a diabolical pirate above the sea steals the secret Krabby Patty formula, SpongeBob and his nemesis Plankton must team up in order to get it back.", "Spongebob_Movie_2_Sponge_Out_Of_Water.jpg", "https://www.youtube.com/embed/e9awLSibQ80", "e9awLSibQ80"],
@@ -23,7 +23,31 @@ const movies = [
     ["Murder on the Orient Express", "When a murder occurs on the train on which he's travelling, celebrated detective Hercule Poirot is recruited to solve the case.", "Murder_on_the_Orient_Express.jpg", "https://www.youtube.com/embed/Mq4m3yAoW8E", "Mq4m3yAoW8E"],
     ["Iron Man", "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.", "Iron_Man.jpg", "https://www.youtube.com/embed/8ugaeA-nMTc", "8ugaeA-nMTc"],
     ["Star Wars IV: A New Hope", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", "Star_Wars_IV_A_New_Hope.jpg", "https://www.youtube.com/embed/vZ734NWnAHA", "vZ734NWnAHA"]
-]
+];
+
+const schedule = [
+    ["Monday", "11:00", randomPositiveNumber(19)],
+    ["Monday", "14:00", randomPositiveNumber(19)],
+    ["Monday", "17:00", randomPositiveNumber(19)],
+    ["Tuesday", "11:00", randomPositiveNumber(19)],
+    ["Tuesday", "14:00", randomPositiveNumber(19)],
+    ["Tuesday", "17:00", randomPositiveNumber(19)],
+    ["Wednesday", "13:00", randomPositiveNumber(19)],
+    ["Wednesday", "16:00", randomPositiveNumber(19)],
+    ["Wednesday", "19:00", randomPositiveNumber(19)],
+    ["Thursday", "11:00", randomPositiveNumber(19)],
+    ["Thursday", "14:00", randomPositiveNumber(19)],
+    ["Thursday", "17:00", randomPositiveNumber(19)],
+    ["Friday", "14:00", randomPositiveNumber(19)],
+    ["Friday", "17:00", randomPositiveNumber(19)],
+    ["Friday", "20:00", randomPositiveNumber(19)],
+    ["Saturday", "14:00", randomPositiveNumber(19)],
+    ["Saturday", "17:00", randomPositiveNumber(19)],
+    ["Saturday", "20:00", randomPositiveNumber(19)],
+    ["Sunday", "14:00", randomPositiveNumber(19)],
+    ["Sunday", "17:00", randomPositiveNumber(19)],
+    ["Sunday", "20:00", randomPositiveNumber(19)]
+];
 
 function regenerateDatabase(){
     // var db = new sqlite3.Database(path.join(__dirname, 'cinema.db'));
@@ -31,18 +55,18 @@ function regenerateDatabase(){
     deleteDatabase();
     setTimeout(createDatabase, 100);
     setTimeout(fillMovies, 300);
+    setTimeout(fillSchedule, 300);
 }
 
 function deleteDatabase(){
     let db = getDatabase();
     console.log("started deleting");
     const sqlDropMovies = 'DROP TABLE IF EXISTS Movies'
+    const sqlDropSchedule = "DROP TABLE IF EXISTS Schedule"
     // const sqlDropUsers = 'DROP TABLE IF EXISTS Users'
     db.run(sqlDropMovies);
+    db.run(sqlDropSchedule);
     // db.run(sqlDropUsers);
-    // const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
-    // db.run(sqlCreateMovies);
-
     db.close();
     console.log("finished deleting");
 }
@@ -53,6 +77,8 @@ function createDatabase(){
     const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
     db.run(sqlCreateMovies);
     // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
+    const sqlCreateSchedule = 'CREATE TABLE Schedule (weekday TEXT, time TEXT, movieid INT, PRIMARY KEY(weekday, time), FOREIGN KEY(movieid) REFERENCES Movies(movieid))';
+    db.run(sqlCreateSchedule);
     db.close();
     console.log("finished creating");
 }
@@ -75,7 +101,27 @@ function fillMovies(){
     }
     prepStmt.finalize();
     db.close();
-    console.log("finished filling database");
+    console.log("finished filling movies");
 }
+
+//fills the schedule table with all schedule information
+function fillSchedule(){
+    let db = getDatabase();
+    console.log("started filling schedule");
+    //prepare sql statement
+    const prepStmt = db.prepare('INSERT INTO Schedule(weekday, time, movieid) VALUES (?, ?, ?)');
+    for(let t=0; t < schedule.length; t++){
+        prepStmt.run(schedule[t][0], schedule[t][1], schedule[t][2]);
+    };
+    prepStmt.finalize();
+    db.close();
+    console.log("finished filling schedule");
+}
+
+function randomPositiveNumber(max){
+    var randomNumber = Math.floor(Math.random() * max);
+    return randomNumber;
+}
+
 
 module.exports = {regenerateDatabase};
