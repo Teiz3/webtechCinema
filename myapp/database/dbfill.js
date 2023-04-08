@@ -25,20 +25,57 @@ const movies = [
     ["Star Wars IV: A New Hope", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", "Star_Wars_IV_A_New_Hope.jpg", "https://www.youtube.com/embed/vZ734NWnAHA", "vZ734NWnAHA"]
 ]
 
-//returns the database
+function regenerateDatabase(){
+    // var db = new sqlite3.Database(path.join(__dirname, 'cinema.db'));
+    
+    deleteDatabase();
+    setTimeout(createDatabase, 100);
+    setTimeout(fillMovies, 300);
+}
+
+function deleteDatabase(){
+    let db = getDatabase();
+    console.log("started deleting");
+    const sqlDropMovies = 'DROP TABLE IF EXISTS Movies'
+    // const sqlDropUsers = 'DROP TABLE IF EXISTS Users'
+    db.run(sqlDropMovies);
+    // db.run(sqlDropUsers);
+    // const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
+    // db.run(sqlCreateMovies);
+
+    db.close();
+    console.log("finished deleting");
+}
+
+function createDatabase(){
+    let db = getDatabase();
+    console.log("start creating");
+    const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
+    db.run(sqlCreateMovies);
+    // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
+    db.close();
+    console.log("finished creating");
+}
+
+// returns the database
 function getDatabase(){
     return new sqlite3.Database(path.join(__dirname, 'cinema.db'));
 }
 
+
+
 //fills the movie table with all the movie info specified in the movies array above
 function fillMovies(){
-    var db = getDatabase();
+    let db = getDatabase();
+    console.log("started filling movies");
     //prepare sql statement (better performance and prevents sql injection)
     const prepStmt = db.prepare('INSERT INTO Movies(movieid, title, desc, image, trailer, trailerID) VALUES (?, ?, ?, ?, ?, ?)');
     for(let i = 0; i < movies.length; i++){
-            prepStmt.run(i, movies[i][0], movies[i][1], movies[i][2], movies[i][3], movies[i][4]);
+        prepStmt.run(i, movies[i][0], movies[i][1], movies[i][2], movies[i][3], movies[i][4]);
     }
     prepStmt.finalize();
+    db.close();
+    console.log("finished filling database");
 }
 
-module.exports = {fillMovies};
+module.exports = {regenerateDatabase};
