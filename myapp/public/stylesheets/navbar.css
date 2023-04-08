@@ -1,6 +1,4 @@
 .navigation-bar{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: #f5c518;
     text-align: center;
     width: 100%;
@@ -8,6 +6,18 @@
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.navigation-bar__container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+
+.navigation-bar__user{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .navigation-bar__button{
     padding-bottom: 20px;
@@ -24,11 +34,24 @@
 }
 
 .navigation-bar__button:hover{
-    background-color: #91740b;
+    background-color: #aa890f;
 }
 
 .navigation-bar__button:active{
     background-color: #775f09;
+}
+
+/* Adds active page highlight */
+#page- .navigation-bar__button--home{
+    background-color: #aa890f;
+}
+
+#page-login .navigation-bar__button--login{
+    background-color: #aa890f;
+}
+
+#page-signup .navigation-bar__button--signup{
+    background-color: #aa890f;
 }
 
 @media screen and (max-width: 600px) {

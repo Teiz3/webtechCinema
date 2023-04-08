@@ -1,14 +1,21 @@
 const maxMoviesPerPage = 5;
 let page = 0;
 let dbMovies = [];
+let buttonAmount = 4;
 
-//setup container for posters and add buttons
+//setup container for posters
 makeElNode("div", document.body, "", "movie-container");
-makeElNode("button", document.body, "Next", "movie-next");
-makeElNode("button", document.body, "Previous", "movie-prev");
 
-getElClass("movie-next").addEventListener("click", function(){incrementPage()}, false);
-getElClass("movie-prev").addEventListener("click", function(){decrementPage()}, false);
+//make buttons
+makeElNode("div", document.body, "", "", "pag__ctrl");
+makeElNode("button", getElId("pag__ctrl"), "←", "pag__ctrl__prev");
+for(let t=1; t<=buttonAmount; t++){
+    makeElNode("button", getElId("pag__ctrl"), t, "pag__ctrl__" + t);
+    getElClass("pag__ctrl__" + t).addEventListener("click", function(){loadPage(t)}, false);
+}
+makeElNode("button", getElId("pag__ctrl"), "→", "pag__crtl__next");
+getElClass("pag__crtl__next").addEventListener("click", function(){incrementPage()}, false);
+getElClass("pag__ctrl__prev").addEventListener("click", function(){decrementPage()}, false);
 
 //get the first 5 movies
 getMovies();
@@ -40,6 +47,12 @@ function decrementPage(){
         // console.log("decrement page: " + page);
         getMovies();
     }
+}
+
+//loadpage
+function loadPage(pageNo){
+    page = pageNo - 1;
+    getMovies();
 }
 
 //delete all old posters and make new posters
