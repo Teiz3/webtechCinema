@@ -2,59 +2,47 @@ const maxMoviesPerPage = 5;
 let page = 0;
 let dbMovies = [];
 
+//setup container for posters and add buttons
 makeElNode("div", document.body, "", "movie-container");
-setup();
+makeElNode("button", document.body, "Next", "movie-next");
+makeElNode("button", document.body, "Previous", "movie-prev");
 
-function setup(){
-    fetch("db?page=" + page +"&limit=" + maxMoviesPerPage)
-    .then(res => res.json()).then(
-        data => { 
-            console.log("dbmovies in then statement " + data);
-            dbMovies = JSON.parse(data);
-            generateIndexPage(dbMovies);
-        });
-};
+getElClass("movie-next").addEventListener("click", function(){incrementPage()}, false);
+getElClass("movie-prev").addEventListener("click", function(){decrementPage()}, false);
 
+//get the first 5 movies
+getMovies();
+
+//get 5 movies acording to page nr and generate posters afterwards with the requested movie info
 function getMovies(){
     fetch("db?page=" + page +"&limit=" + maxMoviesPerPage)
     .then(res => res.json()).then(
         data => { 
-            console.log("dbmovies in then statement " + data);
+            // console.log("dbmovies in then statement " + data);
             dbMovies = JSON.parse(data);
             makePosters(dbMovies);
         });
 };
 
-function generateIndexPage(dbMovies){
-
-    makePosters(dbMovies);
-
-    makeElNode("button", document.body, "Next", "movie-next");
-    makeElNode("button", document.body, "Previous", "movie-prev");
-    
-    getElClass("movie-next").addEventListener("click", function(){incrementPage()}, false);
-    getElClass("movie-prev").addEventListener("click", function(){decrementPage()}, false);
-}
-
-
-
-
+//next page
 function incrementPage(){
     if(page < 3){
         page++;
-        console.log("increment page: " + page);
+        // console.log("increment page: " + page);
         getMovies();    
     }
 }
 
+//previouspage
 function decrementPage(){
     if(page > 0){   
         page--;
-        console.log("decrement page: " + page);
+        // console.log("decrement page: " + page);
         getMovies();
     }
 }
 
+//generate a poster for each movie in dbMovies
 function makePosters(dbMovies){
     while(getElClass("movie-container").hasChildNodes()){
         getElClass("movie-container").removeChild(getElClass("movie-container").firstChild);
@@ -71,7 +59,8 @@ function makePosters(dbMovies){
     }
 }
 
+//opens the movie description page of the movie that was pressed
 function openDescriptionPage(movie){
-    console.log("go to description of " + movie);
+    // console.log("go to description of " + movie);
     window.open("/movie/" + movie, "_self");
 }
