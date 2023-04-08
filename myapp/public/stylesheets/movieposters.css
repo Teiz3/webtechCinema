@@ -9,7 +9,7 @@
 .movie-poster__image{
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     cursor: pointer;
 }
 
@@ -30,4 +30,26 @@
     column-gap: 1vw;
     margin-left: 5vw;
     margin-right: 5vw;
+}
+
+/*Buttons*/
+#pag__ctrl{
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    text-align: center;
+}
+
+#pag__ctrl button{
+    padding: 10px;
+    font-weight: bold;
+    font-size: 2vw;
+    cursor: pointer;
+    background-color: #2a4447;
+    color: white;
+    margin-left: 0.2vw;
+    margin-right: 0.2vw;
+}
+
+#pag__ctrl .pag__ctrl__1{
+    
 }
