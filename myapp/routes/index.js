@@ -14,15 +14,7 @@ const db = new sqlite3.Database(file);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // //sql
-  // let sql = 'SELECT * FROM Movies';
-  // db.all(sql, [], (err, rows) => {
-  //   if(err){
-  //     throw(err);
-  //   }
-    // console.log(rows);
-    res.render('index', { title: 'Express'}); //dbMovies: rows, jsStringify
-  // });
+    res.render('index', { title: 'Popcorn Cinema'}); 
 });
 
 

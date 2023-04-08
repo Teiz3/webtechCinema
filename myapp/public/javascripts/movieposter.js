@@ -42,7 +42,7 @@ function decrementPage(){
     }
 }
 
-//generate a poster for each movie in dbMovies
+//delete all old posters and make new posters
 function makePosters(dbMovies){
     while(getElClass("movie-container").hasChildNodes()){
         getElClass("movie-container").removeChild(getElClass("movie-container").firstChild);
@@ -50,13 +50,17 @@ function makePosters(dbMovies){
 
     for(let i = 0; i < Math.min(dbMovies.length, maxMoviesPerPage); i++){
         movie = dbMovies[i];
-        
-        makeElNode("div", getElClass("movie-container"), "", "movie-poster", movie.title);
-        makeElNode("img", getElId(movie.title), "", "movie-poster__image", "", {src: "images/" + movie.image, alt: "poster of the " + movie.title + " movie"});
-        makeElNode("div", getElId(movie.title), movie.title, "movie-poster__overlay");
-        // makeElNode("a", getElId(movie.title), "link", "", "", {href: "/movie/" + movie.title});
-        getElId(movie.title).addEventListener("click", function(){openDescriptionPage(movie.title), false});
+        makePoster(movie);
     }
+}
+
+//generate an individual poster (needs to be seperate function for the eventlisteners to function properly)
+function makePoster(movie){
+    makeElNode("div", getElClass("movie-container"), "", "movie-poster", movie.title);
+    makeElNode("img", getElId(movie.title), "", "movie-poster__image", "", {src: "images/" + movie.image, alt: "poster of the " + movie.title + " movie"});
+    makeElNode("div", getElId(movie.title), movie.title, "movie-poster__overlay");
+    getElId(movie.title).addEventListener("click", function(){openDescriptionPage(movie.title), false});
+
 }
 
 //opens the movie description page of the movie that was pressed
