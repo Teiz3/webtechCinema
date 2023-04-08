@@ -8,16 +8,7 @@ const db = new sqlite3.Database(path.join(__dirname, '../database/cinema.db'));
 
 /* GET users listing. */
 router.get('/:movie', function(req, res, next) {
-    console.log("req.params.movie: " + req.params.movie);
-    let sql = 'SELECT * FROM Movies WHERE Movies.title =' + '"' + req.params.movie + '"';
-    console.log("sql: " + sql);
-    db.all(sql, [], (err, rows) => {
-        if(err){
-            throw(err);
-        }
-        // res.send(rows);
-        res.render('description', {movie: rows, title: req.params.movie, jsStringify});
-    });
+        res.render('description', {title: req.params.movie});
 });
 
 module.exports = router;

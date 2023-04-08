@@ -16,9 +16,22 @@ router.get('/', function(req, res, next){
       if(err){
         throw(err);
       }
-    //   console.log(rows);
+      //   console.log(rows);
       res.json(JSON.stringify(rows));
     })
   })
+  
+  router.get('/desc', function(req, res, next){
+    console.log("db/desc router activated");
+    const movie = req.query.movie;
+    let sql = 'SELECT * FROM Movies WHERE Movies.title = ' + '"' + movie + '"';
+    console.log("database.js router sql: " + sql);
+  db.all(sql, [], (err, rows) => {
+    if(err){
+      throw(err);
+    }
+    res.json(JSON.stringify(rows));
+  })
+})
 
 module.exports = router;
