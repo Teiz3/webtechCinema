@@ -4,16 +4,33 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var app = express();
+
+// /*require modules for user login*/
+// var bcrypt = require('bcrypt');
+// var passportModule = require('passport');
+// var flash = require('express-flash');
+// var session = require('express-session');
+
+// /*passport handling*/
+// app.use(flash());
+// app.use(session({
+//   secret: "secret",
+//   resave: false,
+//   saveUninitialized: false
+// }));
+// app.use(passportModule.initialize());
+// app.use(passportModule.session());
+
+/*require router files*/
 var indexRouter = require('./routes/indexRouter');
 var descriptionRouter = require('./routes/descriptionRouter');
 var usersRouter = require('./routes/usersRouter');
-var loginRouter = require('./routes/userloginRouter');
-var signupRouter = require('./routes/usersignupRouter');
+// var loginRouter = require('./routes/userloginRouter');
+// var signupRouter = require('./routes/usersignupRouter');
 var databaseRouter = require('./routes/databaseRouter');
 
 var fs = require("fs");
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,8 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/movie', descriptionRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
+// app.use('/login', loginRouter);
+// app.use('/signup', signupRouter);
 app.use('/db', databaseRouter);
 
 //database setup

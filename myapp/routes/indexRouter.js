@@ -1,4 +1,3 @@
-console.log("index.js router start file");
 var express = require('express');
 var router = express.Router();
 

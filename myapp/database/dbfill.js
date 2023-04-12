@@ -63,10 +63,10 @@ function deleteDatabase(){
     console.log("started deleting");
     const sqlDropMovies = 'DROP TABLE IF EXISTS Movies'
     const sqlDropSchedule = "DROP TABLE IF EXISTS Schedule"
-    // const sqlDropUsers = 'DROP TABLE IF EXISTS Users'
-    db.run(sqlDropMovies);
+    const sqlDropUsers = 'DROP TABLE IF EXISTS RegisteredUsers'
     db.run(sqlDropSchedule);
-    // db.run(sqlDropUsers);
+    db.run(sqlDropMovies);
+    db.run(sqlDropUsers);
     db.close();
     console.log("finished deleting");
 }
@@ -76,9 +76,10 @@ function createDatabase(){
     console.log("start creating");
     const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
     db.run(sqlCreateMovies);
-    // cinemaDb.run("CREATE TABLE RegisteredUsers (userid INT, name TEXT, email TEXT, street TEXT, streetno INT, login TEXT, password TEXT, creditcard INT)");
     const sqlCreateSchedule = 'CREATE TABLE Schedule (weekday TEXT, time TEXT, movieid INT, PRIMARY KEY(weekday, time), FOREIGN KEY(movieid) REFERENCES Movies(movieid))';
     db.run(sqlCreateSchedule);
+    const sqlCreateRegisteredUsers = 'CREATE TABLE RegisteredUsers (userid INT UNIQUE, fullname TEXT, username TEXT, password TEXT, email TEXT, street TEXT, streetno INT, creditcard INT, PRIMARY KEY(userid))'
+    db.run(sqlCreateRegisteredUsers);
     db.close();
     console.log("finished creating");
 }
