@@ -7,7 +7,7 @@ var express = require('express');
 var router = express.Router();
 var sqlite3 = require("sqlite3").verbose();
 var path = require('path');
-// var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 // var passportModule = require('passport');
 
 /*get the database by its file location and open it*/
