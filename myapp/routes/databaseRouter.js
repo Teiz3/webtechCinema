@@ -53,6 +53,11 @@ router.get('/desc', function(req, res, next){
     if(err){
       throw(err);
     }
+    let loggedIn = false;
+    if(req.session.user){
+      loggedIn = true;
+    }
+    rows[1] = {"loggedIn": loggedIn};
     res.json(JSON.stringify(rows));
   })
 })
@@ -62,7 +67,7 @@ router.post('/users/signup', async (req, res) => {
   try{
       console.log(req.body.username);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const sqlInsertUser = 'INSERT INTO RegisteredUsers(userid, username, email, password) VALUES (?, ?, ?, ?)';
+      const sqlInsertUser = 'INSERT INTO Users(userid, username, email, password) VALUES (?, ?, ?, ?)';
       const prepStmt = db.prepare(sqlInsertUser);
       prepStmt.run(Date.now().toString(), req.body.username, req.body.email, hashedPassword);
       res.redirect('../../users/login')
@@ -74,7 +79,7 @@ router.post('/users/signup', async (req, res) => {
 router.post('/users/login', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const userSql = 'SELECT username, password FROM RegisteredUsers WHERE username = ?';
+  const userSql = 'SELECT username, password FROM Users WHERE username = ?';
 
   db.get(userSql, [username], async (err, user) => {
     if(err){

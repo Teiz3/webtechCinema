@@ -25,29 +25,7 @@ const movies = [
     ["Star Wars IV: A New Hope", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", "Star_Wars_IV_A_New_Hope.jpg", "https://www.youtube.com/embed/vZ734NWnAHA", "vZ734NWnAHA"]
 ];
 
-const schedule = [
-    ["Monday", "11:00", randomPositiveNumber(19)],
-    ["Monday", "14:00", randomPositiveNumber(19)],
-    ["Monday", "17:00", randomPositiveNumber(19)],
-    ["Tuesday", "11:00", randomPositiveNumber(19)],
-    ["Tuesday", "14:00", randomPositiveNumber(19)],
-    ["Tuesday", "17:00", randomPositiveNumber(19)],
-    ["Wednesday", "13:00", randomPositiveNumber(19)],
-    ["Wednesday", "16:00", randomPositiveNumber(19)],
-    ["Wednesday", "19:00", randomPositiveNumber(19)],
-    ["Thursday", "11:00", randomPositiveNumber(19)],
-    ["Thursday", "14:00", randomPositiveNumber(19)],
-    ["Thursday", "17:00", randomPositiveNumber(19)],
-    ["Friday", "14:00", randomPositiveNumber(19)],
-    ["Friday", "17:00", randomPositiveNumber(19)],
-    ["Friday", "20:00", randomPositiveNumber(19)],
-    ["Saturday", "14:00", randomPositiveNumber(19)],
-    ["Saturday", "17:00", randomPositiveNumber(19)],
-    ["Saturday", "20:00", randomPositiveNumber(19)],
-    ["Sunday", "14:00", randomPositiveNumber(19)],
-    ["Sunday", "17:00", randomPositiveNumber(19)],
-    ["Sunday", "20:00", randomPositiveNumber(19)]
-];
+const scheduleTimes = ["11:00", "13:00", "16:00", "20:00"];
 
 function regenerateDatabase(){
     // var db = new sqlite3.Database(path.join(__dirname, 'cinema.db'));
@@ -63,10 +41,12 @@ function deleteDatabase(){
     console.log("started deleting");
     const sqlDropMovies = 'DROP TABLE IF EXISTS Movies'
     const sqlDropSchedule = "DROP TABLE IF EXISTS Schedule"
-    const sqlDropUsers = 'DROP TABLE IF EXISTS RegisteredUsers'
+    const sqlDropUsers = 'DROP TABLE IF EXISTS Users'
+    const sqlDropOrders = 'DROP TABLE IF EXISTS Orders'
     db.run(sqlDropSchedule);
     db.run(sqlDropMovies);
     db.run(sqlDropUsers);
+    db.run(sqlDropOrders);
     db.close();
     console.log("finished deleting");
 }
@@ -76,10 +56,12 @@ function createDatabase(){
     console.log("start creating");
     const sqlCreateMovies = 'CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))';
     db.run(sqlCreateMovies);
-    const sqlCreateSchedule = 'CREATE TABLE Schedule (weekday TEXT, time TEXT, movieid INT, PRIMARY KEY(weekday, time), FOREIGN KEY(movieid) REFERENCES Movies(movieid))';
+    const sqlCreateSchedule = 'CREATE TABLE Schedule (scheduleid INT, date TEXT, weekday TEXT, time TEXT, movieid INT, PRIMARY KEY(scheduleid), FOREIGN KEY(movieid) REFERENCES Movies(movieid))';
     db.run(sqlCreateSchedule);
-    const sqlCreateRegisteredUsers = 'CREATE TABLE RegisteredUsers (userid INT UNIQUE, fullname TEXT, username TEXT, password TEXT, email TEXT, street TEXT, streetno INT, creditcard INT, PRIMARY KEY(userid))'
-    db.run(sqlCreateRegisteredUsers);
+    const sqlCreateUsers = 'CREATE TABLE Users (userid INT UNIQUE, fullname TEXT, username TEXT, password TEXT, email TEXT, street TEXT, streetno INT, creditcard INT, PRIMARY KEY(userid))';
+    db.run(sqlCreateUsers);
+    const sqlCreateOrders = 'CREATE TABLE Orders (orderid INT UNIQUE, schedule INT, user INT, date TEXT, nroftickets INT, PRIMARY KEY(orderid), FOREIGN KEY(schedule) REFERENCES Schedule(scheduleid), FOREIGN KEY(user) REFERENCES User(userid))';
+    db.run(sqlCreateOrders);
     db.close();
     console.log("finished creating");
 }
@@ -110,13 +92,22 @@ function fillSchedule(){
     let db = getDatabase();
     console.log("started filling schedule");
     //prepare sql statement
-    const prepStmt = db.prepare('INSERT INTO Schedule(weekday, time, movieid) VALUES (?, ?, ?)');
-    for(let t=0; t < schedule.length; t++){
-        prepStmt.run(schedule[t][0], schedule[t][1], schedule[t][2]);
+    const prepStmt = db.prepare('INSERT INTO Schedule(scheduleid, date, weekday, time, movieid) VALUES (?, ?, ?, ?, ?)');
+    for(let i=0; i < 14; i++){
+        for(let j = 0; j < scheduleTimes.length; j++){
+            prepStmt.run(i.toString() + j.toString(), getDate(i), getDate(i).toLocaleString("default", {weekday: "long"}), scheduleTimes[j], randomPositiveNumber(movies.length-1));
+        };
     };
     prepStmt.finalize();
     db.close();
     console.log("finished filling schedule");
+}
+
+function getDate(offset){
+    var date = new Date(Date.now());
+    let today = date.getDate();
+    date.setDate(today + offset);
+    return date;
 }
 
 function randomPositiveNumber(max){
