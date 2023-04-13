@@ -8,28 +8,11 @@ var router = express.Router();
 var sqlite3 = require("sqlite3").verbose();
 var path = require('path');
 var bcrypt = require('bcrypt');
-// const session = require('express-session');
-// const options = {secret: 'The cake is a lie', resave: false, saveUninitialized: true, cookie: {secure: false}};
-// router.use(session(options));
-// var passportModule = require('passport');
 
 /*get the database by its file location and open it*/
 const file = path.join(__dirname, '../database/cinema.db');
 console.log("database.js router file: " + file);
 const db = new sqlite3.Database(file);
-
-// /*user login authentication*/
-// var passwordManager = require('./../passportManager');
-// passwordManager.passportInit(passportModule, username => {
-//   let sqlGetUser = 'SELECT * FROM RegisteredUsers WHERE RegisteredUsers.username = ' + username;
-//   db.all(sqlGetUser, [], (err, rows) => {
-//     if(err){
-//       throw(err);
-//     }
-//     console.log("get user by username sql");
-//     return JSON.stringify(rows[0]);
-//   })
-// });
 
 /*get request router for /db. Used by homepage to load movies from db*/
 router.get('/', function(req, res, next){
@@ -88,12 +71,6 @@ router.post('/users/signup', async (req, res) => {
   }
 })
 
-// router.post('/users/login', passportModule.authenticate('local', {
-//   successRedirect: '/',
-//   failureRedirect: '/users/login',
-//   failureFlash: true
-// }));
-
 router.post('/users/login', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -123,17 +100,6 @@ router.post('/users/login', async (req, res) => {
     }
   })
 
-
-  // db.all(usersSql, [], (err, rows) => {
-  //   var allUsers = rows; 
-  //   console.log(allUsers);
-  // })
-  // if (bcrypt.compare(req.body.password, allUsers.password)){
-  //   console.log('You are logged in');
-  // }
-  // else{
-  //   console.log('You are NOT logged in');
-  // } 
 });
 
 function checkUsername(){
