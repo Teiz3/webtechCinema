@@ -31,7 +31,7 @@ router.get('/', function(req, res, next){
 
   router.get('/schedule', function(req, res, next){
     const weekDay = req.query.weekday;
-    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE weekday = ?';
+    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE weekday = ?';
     // console.log("database.js router sql: " + sql);
     db.all(sqlSchedule, [weekDay], (err, rows) => {
       if(err){

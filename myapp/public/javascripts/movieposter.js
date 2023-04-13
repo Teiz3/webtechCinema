@@ -63,13 +63,13 @@ function makePosters(dbMovies){
 
     for(let i = 0; i < Math.min(dbMovies.length, maxMoviesPerPage); i++){
         movie = dbMovies[i];
-        makePoster(movie);
+        makePoster(movie, "movie-container");
     }
 }
 
 //generate an individual poster (needs to be seperate function for the eventlisteners to function properly)
-function makePoster(movie){
-    makeElNode("div", getElClass("movie-container"), "", "movie-poster", movie.title);
+function makePoster(movie, parentclass){
+    makeElNode("div", getElClass(parentclass), "", "movie-poster", movie.title);
     makeElNode("img", getElId(movie.title), "", "movie-poster__image", "", {src: "images/" + movie.image, alt: "poster of the " + movie.title + " movie"});
     makeElNode("div", getElId(movie.title), movie.title, "movie-poster__overlay");
     getElId(movie.title).addEventListener("click", function(){openDescriptionPage(movie.title), false});

@@ -44,11 +44,13 @@ function makeSchedule(dbSchedule){
     for(let i = 0; i < dbSchedule.length; i++){
         scheduleEntry = dbSchedule[i]; 
         makeScheduleEntry(scheduleEntry);
+        console.log(scheduleEntry);
     }
 };
 
 function makeScheduleEntry(scheduleEntry){
-    makeElNode("img", getElClass("schedule-day"), "", "", "", {src: "images/" + scheduleEntry.image, alt: "poster of the " + scheduleEntry.title + " movie"});
+    makeElNode('div', getElClass('schedule-day'), '', 'image-container', scheduleEntry.date + scheduleEntry.time);
+    makeElNode("img", getElId(scheduleEntry.date + scheduleEntry.time), "", "schedule-day__image", "", {src: "images/" + scheduleEntry.image, alt: "poster of the " + scheduleEntry.title + " movie"});
     makeElNode("p", getElClass("schedule-day"), scheduleEntry.time);
     makeElNode("p", getElClass("schedule-day"), scheduleEntry.title);
 };
