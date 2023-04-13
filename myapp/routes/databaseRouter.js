@@ -8,6 +8,9 @@ var router = express.Router();
 var sqlite3 = require("sqlite3").verbose();
 var path = require('path');
 var bcrypt = require('bcrypt');
+// const session = require('express-session');
+// const options = {secret: 'The cake is a lie', resave: false, saveUninitialized: true, cookie: {secure: false}};
+// router.use(session(options));
 // var passportModule = require('passport');
 
 /*get the database by its file location and open it*/
@@ -90,6 +93,48 @@ router.post('/users/signup', async (req, res) => {
 //   failureRedirect: '/users/login',
 //   failureFlash: true
 // }));
+
+router.post('/users/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const userSql = 'SELECT username, password FROM RegisteredUsers WHERE username = ?';
+
+  db.get(userSql, [username], async (err, user) => {
+    if(err){
+      console.error(err.message);
+      res.status(500).send('Server Error');
+      return;
+    }
+    if(!user){
+      console.log('User not found');
+      res.status(401).send('User not found');
+      return;
+    }
+    const passwordCorrect = await bcrypt.compare(password, user.password);
+    if(passwordCorrect){
+      console.log('You are logged in');
+      console.log(user);
+      req.session.user = user; //creates session with user object
+      res.send('Login success');
+    }
+    else{
+      console.log('You are NOT logged in');
+      res.send('Login fail');
+    }
+  })
+
+
+  // db.all(usersSql, [], (err, rows) => {
+  //   var allUsers = rows; 
+  //   console.log(allUsers);
+  // })
+  // if (bcrypt.compare(req.body.password, allUsers.password)){
+  //   console.log('You are logged in');
+  // }
+  // else{
+  //   console.log('You are NOT logged in');
+  // } 
+});
 
 function checkUsername(){
 

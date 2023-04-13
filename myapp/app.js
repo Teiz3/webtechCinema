@@ -6,6 +6,10 @@ var logger = require('morgan');
 
 var app = express();
 
+const session = require('express-session');
+const options = {secret: 'The cake is a lie', resave: false, saveUninitialized: true, cookie: {secure: false}};
+app.use(session(options));
+
 // /*require modules for user login*/
 // var bcrypt = require('bcrypt');
 // var passportModule = require('passport');
