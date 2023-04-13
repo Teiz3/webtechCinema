@@ -28,7 +28,7 @@ function descriptionPage(movie){
         makeElNode("div", document.body, "", "trailer-container");
         makeElNode("iframe", getElClass("trailer-container"), "", "trailer", "", {src: movie.trailer + "?playlist=" + movie.trailerID + "&autoplay=1&controls=0&disablekb=1&loop=1&mute=1"});
         if(dbMovies[1].loggedIn){
-            makeElNode("a", getElClass("info-container"), "Order tickets", "", "", {href: "../order"});
+            makeElNode("a", getElClass("info-container"), "Order tickets", "", "", {href: "../order?movie=" + movie.movieid});
         }
     }
 }

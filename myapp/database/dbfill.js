@@ -95,7 +95,7 @@ function fillSchedule(){
     const prepStmt = db.prepare('INSERT INTO Schedule(scheduleid, date, weekday, time, movieid) VALUES (?, ?, ?, ?, ?)');
     for(let i=0; i < 14; i++){
         for(let j = 0; j < scheduleTimes.length; j++){
-            prepStmt.run(i.toString() + j.toString(), getDate(i), getDate(i).toLocaleString("default", {weekday: "long"}), scheduleTimes[j], randomPositiveNumber(movies.length-1));
+            prepStmt.run(i.toString() + j.toString(), getDate(i).toLocaleDateString(), getDate(i).toLocaleString("default", {weekday: "long"}), scheduleTimes[j], randomPositiveNumber(movies.length-1));
         };
     };
     prepStmt.finalize();
@@ -107,6 +107,7 @@ function getDate(offset){
     var date = new Date(Date.now());
     let today = date.getDate();
     date.setDate(today + offset);
+    // let result = date.toISOString();
     return date;
 }
 
