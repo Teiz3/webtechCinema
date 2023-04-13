@@ -69,6 +69,15 @@
     border: none;
 }
 
+.image-container{
+    width: 20vw;
+}
+.schedule-day__image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
 @media screen and (max-width: 600px) {
     .movie-container{
         grid-template-columns: 1fr;

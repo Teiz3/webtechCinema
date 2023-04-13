@@ -12,7 +12,7 @@ body{
 }
 
 .movie-info{
-    /* width: fit-content; */
+    width: fit-content;
     padding: 5px 15px;
     color: white;
 }
@@ -59,4 +59,30 @@ img.movie-info{
     .trailer-container .trailer {
       width: 177.78vh;
     }
+  }
+
+  @media screen and (max-width: 600px){
+    #movie-info{
+      width: 90vw;
+      grid-template-columns: 1fr;
+      float: none;
+      margin-left: auto;
+      margin-right: auto
+    }
+    img.movie-info{
+      width: 70vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .info-container p{
+      font-size: 5vw;
+      text-align: center;
+    }
+
+    .info-container h1{
+      font-size: 7vw;
+      text-align: center;
+    }
+
+
   }
