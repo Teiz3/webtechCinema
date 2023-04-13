@@ -1,5 +1,7 @@
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const d = new Date();
+const dateOnly = d.getDate();
+const month = "-" + (d.getMonth()+1);
 let currentWeekday = d.getDay();
 
 makeElNode("hr", document.body, "", "hr");
@@ -8,8 +10,8 @@ makeElNode("div", document.body, "", "schedule-container");
 
 //Make weekday buttons
 makeElNode("div", getElClass("schedule-container"), "", "schedule-buttons");
-for(let i=0; i < weekdays.length; i++){
-    makeElNode("button", getElClass("schedule-buttons"), weekdays[i], "schedule-button-" + i);
+for(let i=0; i < 7; i++){
+    makeElNode("button", getElClass("schedule-buttons"), (dateOnly+i) + month, "schedule-button-" + i);
     getElClass("schedule-button-" + i).addEventListener("click", function(){loadDay(i)}, false);
 }
 
@@ -44,7 +46,7 @@ function makeSchedule(dbSchedule){
     for(let i = 0; i < dbSchedule.length; i++){
         scheduleEntry = dbSchedule[i]; 
         makeScheduleEntry(scheduleEntry);
-        console.log(scheduleEntry);
+        // console.log(scheduleEntry);
     }
 };
 

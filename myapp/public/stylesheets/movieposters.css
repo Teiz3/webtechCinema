@@ -51,13 +51,17 @@
 }
 
 .schedule-container{
-    margin-left: 15vw;
-    margin-right: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
     margin-top: 3vw;
 }
 
 .schedule-buttons{
     margin-bottom: 5vw;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .hr{
