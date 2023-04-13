@@ -61,5 +61,10 @@
 
     .navigation-bar__button{
         font-size: 3vw;
-    }  
+    } 
+    
+    .navigation-bar__container{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }

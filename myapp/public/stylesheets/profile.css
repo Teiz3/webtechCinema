@@ -1,0 +1,25 @@
+.info-container{
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    color: white;
+    background-color: #193033;
+    font-size: 3vw;
+    box-shadow: 7px 7px 7px black;
+    border-radius: 7px;
+}
+
+.info-container p{
+    margin-left: 4vw;
+    margin-right: 4vw;
+}
+
+.hr{
+    margin-left: 4vw;
+    margin-right: 4vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+}

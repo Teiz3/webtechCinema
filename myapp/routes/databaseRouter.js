@@ -97,7 +97,7 @@ router.post('/users/login', async (req, res) => {
       console.log('You are logged in');
       console.log(user);
       req.session.user = user; //creates session with user object
-      res.send('Login success');
+      res.redirect('../../');
     }
     else{
       console.log('You are NOT logged in');
@@ -107,8 +107,15 @@ router.post('/users/login', async (req, res) => {
 
 });
 
-function checkUsername(){
+router.get('/profile', (req, res) => {
+  const profileSQL = 'SELECT * FROM RegisteredUsers WHERE username = ?';
+  db.all(profileSQL, req.session.user.username, (err, rows) => {
+    if(err){
+      throw(err);
+    }
+    res.json(JSON.stringify(rows));
+  })
+})
 
-}
 
 module.exports = router;

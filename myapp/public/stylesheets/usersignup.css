@@ -10,11 +10,12 @@
     padding-top: 2vh;
     padding-bottom: 2vh;
     border-radius: 7px;
-    box-shadow: 7px 7px 7px;
-    background-color: rgba(0,0,0,0.5);
+    box-shadow: 7px 7px 7px black;
+    background-color: #193033;
     font-size: 2em;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    color: white;
 }
 /*
 #gridright{
