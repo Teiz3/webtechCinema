@@ -65,6 +65,7 @@ router.get('/desc', function(req, res, next){
 /*get router for /db/desc, used by the descriptionpage to fetch data of 1 movie from db*/
 router.get('/order', (req, res, next) => {
   const movieid = req.query.movieid;
+  req.session.user.movieid = movieid;
   let ordermoviesql = 'SELECT movieid, title, image FROM Movies WHERE Movies.movieid = ' + movieid;
   let orderschedulesql = 'SELECT scheduleid, date, weekday, time FROM Schedule WHERE movieid = ' + movieid;
   let response = [];

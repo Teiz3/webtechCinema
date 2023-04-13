@@ -1,0 +1,35 @@
+h1{
+    font-size: 8vw;
+    color: #f5c518;
+}
+
+.movie-container{
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie-container img{
+    width: 100%;
+    height: auto;
+}
+
+.schedule-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: auto;
+    height: 8vw;
+    row-gap: 1vw;
+}
+
+.schedule-container h2{
+    text-align: center;
+    font-size: 3vw;
+}
+
+.schedule-container button{
+    font-size: 2vw;
+}
