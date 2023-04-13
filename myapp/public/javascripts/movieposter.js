@@ -7,13 +7,13 @@ let buttonAmount = 4;
 makeElNode("div", document.body, "", "movie-container");
 
 //make buttons
-makeElNode("div", document.body, "", "", "pag__ctrl");
-makeElNode("button", getElId("pag__ctrl"), "←", "pag__ctrl__prev");
+makeElNode("div", document.body, "", "pag__ctrl");
+makeElNode("button", getElClass("pag__ctrl"), "←", "pag__ctrl__prev");
 for(let t=1; t<=buttonAmount; t++){
-    makeElNode("button", getElId("pag__ctrl"), t, "pag__ctrl__" + t);
+    makeElNode("button", getElClass("pag__ctrl"), t, "pag__ctrl__" + t);
     getElClass("pag__ctrl__" + t).addEventListener("click", function(){loadPage(t)}, false);
 }
-makeElNode("button", getElId("pag__ctrl"), "→", "pag__crtl__next");
+makeElNode("button", getElClass("pag__ctrl"), "→", "pag__crtl__next");
 getElClass("pag__crtl__next").addEventListener("click", function(){incrementPage()}, false);
 getElClass("pag__ctrl__prev").addEventListener("click", function(){decrementPage()}, false);
 

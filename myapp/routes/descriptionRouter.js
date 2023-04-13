@@ -8,7 +8,13 @@ const db = new sqlite3.Database(path.join(__dirname, '../database/cinema.db'));
 
 /* GET users listing. */
 router.get('/:movie', function(req, res, next) {
-        res.render('description', {title: req.params.movie});
+    if(req.session.user){
+        res.render('description', {title: req.params.movie, loggedIn: true});
+    }
+    else{
+        res.render('description', {title: req.params.movie, loggedIn: false});
+    }
+        
 });
 
 module.exports = router;

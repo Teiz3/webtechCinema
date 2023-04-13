@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Popcorn Cinema'}); 
+    if(req.session.user){
+        res.render('index', { title: 'Popcorn Cinema', loggedIn: true}); 
+    }
+    else{
+        res.render('index', { title: 'Popcorn Cinema', loggedIn: false}); 
+    }
 });
 
 module.exports = router;

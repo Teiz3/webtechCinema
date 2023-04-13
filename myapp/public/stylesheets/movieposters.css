@@ -33,13 +33,13 @@
 }
 
 /*Buttons*/
-#pag__ctrl{
+.pag__ctrl{
     padding-top: 1vw;
     padding-bottom: 1vw;
     text-align: center;
 }
 
-#pag__ctrl button, .schedule-buttons button{
+.pag__ctrl button, .schedule-buttons button{
     padding: 10px;
     font-weight: bold;
     font-size: 2vw;
@@ -68,6 +68,31 @@
     background-color: #f5c518;
     border: none;
 }
-#pag__ctrl .pag__ctrl__1{
-    
+
+@media screen and (max-width: 600px) {
+    .movie-container{
+        grid-template-columns: 1fr;
+    }
+
+    .movie-poster__overlay{
+        font-size: 8vw;
+    }
+
+    h1{
+        font-size: 15vw;
+    }
+
+    .movie-poster{
+        margin-bottom: 5vw;
+    }
+
+    .schedule-container{
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-top: 3vw;
+    }
+
+    .pag__ctrl button{
+        font-size: 8vw;
+    }
 }
