@@ -88,7 +88,6 @@ function openDescriptionPage(movie){
 const d = new Date();
 const dateOnly = d.getDate();
 const month = "-" + (d.getMonth()+1);
-let currentWeekday = d.getDay();
 
 makeElNode("hr", document.body, "", "hr");
 //setup container for schedule

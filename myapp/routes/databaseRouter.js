@@ -37,7 +37,6 @@ router.get('/', function(req, res, next){
       if(err){
         throw(err);
       }
-      console.log(rows);
       res.json(JSON.stringify(rows));
     })
   })
