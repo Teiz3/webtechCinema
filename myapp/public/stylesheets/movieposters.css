@@ -85,6 +85,11 @@ h1{
     object-fit: cover;
 }
 
+.schedule-day{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 @media screen and (max-width: 600px) {
     .movie-container{
         grid-template-columns: 1fr;

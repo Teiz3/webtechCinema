@@ -30,14 +30,14 @@ router.get('/', function(req, res, next){
   })
 
   router.get('/schedule', function(req, res, next){
-    const weekDay = req.query.weekday;
-    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE weekday = ?';
-    // console.log("database.js router sql: " + sql);
-    db.all(sqlSchedule, [weekDay], (err, rows) => {
+    const date = req.query.date;
+    const dateconverted = date.replaceAll("-", "/");
+    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
+    db.all(sqlSchedule, [dateconverted], (err, rows) => {
       if(err){
         throw(err);
       }
-      //   console.log(rows);
+      console.log(rows);
       res.json(JSON.stringify(rows));
     })
   })
@@ -65,7 +65,7 @@ router.get('/desc', function(req, res, next){
 /*get router for /db/desc, used by the descriptionpage to fetch data of 1 movie from db*/
 router.get('/order', (req, res, next) => {
   const movieid = req.query.movieid;
-  req.session.user.movieid = movieid;
+  // req.session.user.movieid = movieid;
   let ordermoviesql = 'SELECT movieid, title, image FROM Movies WHERE Movies.movieid = ' + movieid;
   let orderschedulesql = 'SELECT scheduleid, date, weekday, time FROM Schedule WHERE movieid = ' + movieid;
   let response = [];

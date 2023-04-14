@@ -4,7 +4,7 @@ script(defer, src=baseURL + "./javascripts/navbar.js")
 
 nav(class="navigation-bar")
   div(class="navigation-bar__container")
-    a(class="navigation-bar__button navigation-bar__button--home" href=baseURL) Home
+    a(class="navigation-bar__button navigation-bar__button--home" href=baseURL + './') Home
     if !loggedInPug
         div(class="navigation-bar__user")
           a(class="navigation-bar__button navigation-bar__button--login" href=baseURL + "users/login") Login
