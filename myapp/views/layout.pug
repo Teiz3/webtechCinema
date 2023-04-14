@@ -2,16 +2,15 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href=folder + 'stylesheets/general.css')
-    link(rel='stylesheet', href=folder + 'stylesheets/navbar.css')
+    link(rel='stylesheet', href='./stylesheets/general.css')
+    link(rel='stylesheet', href='./stylesheets/navbar.css')
     link(rel='stylesheet', href='../stylesheets/footer.css')
-    script(src='../javascripts/functions.js')
+    script(src='./javascripts/functions.js')
     script(defer, src="../javascripts/footer.js")
     script(defer, src="../javascripts/bodyid.js")
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(charset='utf-8')
   body
-  h1=folder + 'stylesheets/general.css'
     include navbar.pug
     block content
     include footer.pug
