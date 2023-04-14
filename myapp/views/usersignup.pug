@@ -8,10 +8,10 @@ block content
 
     #usersignup
         h2 User Sign Up
-        form(action=baseURL + './db/users/signup' method="POST")
-            //- label(for='fullname') Full name:
-            //- br
-            //- input#fullname(type='text' name='fullname' value='')
+        form(action='/db/users/signup' method="POST")
+            label(for='fullname') Full name:
+            br
+            input#fullname(type='text' name='fullname' value='')
             br
             label(for='username') Username:
             br
@@ -21,22 +21,17 @@ block content
             br
             input#password(type='password' name='password' value='' required)
             br
-            //- label(for='rpassword') Repeat password:
-            //- br
-            //- input#rpassword(type='text' name='rpassword' value='')
-            //- br
             label(for='email') Email:
             br
             input#email(type='email' name='email' value='' required)
-            //- br
-            //- label(for='adress') Adress:
-            //- br
-            //- input#adress(type='text' name='adress' value='')
-            //- br
-            //- label(for='creditcard') Creditcard:
-            //- br
-            //- input#creditcard(type='text' name='creditcard' value='')
             br
+            label(for='adress') Adress:
+            br
+            input#adress(type='text' name='adress' value='')
+            br
+            label(for='creditcard') Creditcard:
+            br
+            input#creditcard(type='text' name='creditcard' value='')
             br
             input(type='submit' value='Submit')
 
