@@ -1,8 +1,10 @@
 extends layout 
 
+block url 
+  -var baseURL = "../"
 
 block content 
-    link(rel='stylesheet', href='stylesheets/profile.css')
+    link(rel='stylesheet', href=baseURL + './stylesheets/profile.css')
 
-    script(src="javascripts/functions.js")
-    script(src="javascripts/profile.js")
+    script(src=baseURL + "./javascripts/functions.js")
+    script(src=baseURL + "./javascripts/profile.js")

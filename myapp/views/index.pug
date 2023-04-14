@@ -1,11 +1,12 @@
 extends layout
 
+block url 
+  -var baseURL = ""
+
+
 block content
-  link(rel="stylesheet", href="stylesheets/movieposters.css")
-  //- link(rel="stylesheet", href="../stylesheets/moviedescription.css")
+  link(rel="stylesheet", href=baseURL + "./stylesheets/movieposters.css")
   h1 Popcorn Cinema
-  //- script.
-  //-   const dbMovies = !{jsStringify(dbMovies)};
-  script(src="javascripts/functions.js")
-  script(src="javascripts/movieposter.js")
-  script(src="javascripts/schedule.js")
+  script(src=baseURL + "./javascripts/functions.js")
+  script(src=baseURL + "./javascripts/movieposter.js")
+  script(src=baseURL + "./javascripts/schedule.js")

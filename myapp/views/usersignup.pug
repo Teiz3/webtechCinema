@@ -1,11 +1,14 @@
 extends layout 
 
+block url 
+  -var baseURL = "../"
+
 block content
-    link(rel='stylesheet', href='stylesheets/usersignup.css')
+    link(rel='stylesheet', href=baseURL + './stylesheets/usersignup.css')
 
     #usersignup
         h2 User Sign Up
-        form(action='/db/users/signup' method="POST")
+        form(action=baseURL + './db/users/signup' method="POST")
             //- label(for='fullname') Full name:
             //- br
             //- input#fullname(type='text' name='fullname' value='')

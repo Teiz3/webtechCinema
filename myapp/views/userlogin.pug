@@ -1,14 +1,16 @@
 extends layout 
 
+block url
+  -var baseURL = "../"
+
 block content
-    link(rel='stylesheet', href='./stylesheets/userlogin.css')
+    link(rel='stylesheet', href=baseURL + './stylesheets/userlogin.css')
 
     #userlogin
-        h1=folder
         h2 User Login
         //- if(messages.error)
             p= messages.error
-        form(action='/db/users/login' method="POST")
+        form(action=baseURL + './db/users/login' method="POST")
             label(for='username') Username:
             br
             input#username(type='text' name='username' value='')

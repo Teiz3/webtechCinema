@@ -1,6 +1,9 @@
 extends layout
 
+block url 
+  -var baseURL = "../"
+
 block content
-    script(src="javascripts/functions.js")
-    link(rel="stylesheet" href="stylesheets/moviedescription.css")
-    script(src="javascripts/moviedescription.js")
+    script(src=baseURL + "./javascripts/functions.js")
+    link(rel="stylesheet" href=baseURL + "./stylesheets/moviedescription.css")
+    script(src=baseURL + "./javascripts/moviedescription.js")
