@@ -7,7 +7,7 @@
     padding-bottom: 2vw;
     color: white;
     background-color: #193033;
-    font-size: 3vw;
+    font-size: 2vw;
     box-shadow: 7px 7px 7px black;
     border-radius: 7px;
 }
@@ -17,9 +17,55 @@
     margin-right: 4vw;
 }
 
+.info-container form{
+    margin-left: 4vw;
+    margin-right: 4vw;
+}
+
 .hr{
     margin-left: 4vw;
     margin-right: 4vw;
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
+}
+
+input{
+    font-size: 1.5vw;
+}
+
+/*placeholder text for chrome*/
+input::-webkit-input-placeholder {
+    color: black;
+}
+
+/*Placeholder text for firefox*/
+input::-moz-placeholder {
+    color: black;
+}
+
+.input-container{
+    display: relative;
+    float: right;
+}
+
+@media screen and (max-width: 1000px){
+    .info-container{
+        margin-left: 15vw;
+        margin-right: 15vw;
+        font-size: 3vw;
+    }
+    input{
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .info-container{
+        margin-left: 5vw;
+        margin-right: 5vw;
+        font-size: 10vw;
+    }
+    input{
+        font-size: 5vw;
+    }
 }

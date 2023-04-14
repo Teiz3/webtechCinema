@@ -5,13 +5,42 @@
 #userlogin{
     margin-left: 30vw;
     margin-right: 30vw;
-    margin-top: 20vh;
+    margin-top: auto;
+    margin-bottom: auto;
     padding-left: 2vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
     border-radius: 7px;
     box-shadow: 7px 7px 7px black;
     background-color: #193033;
     font-size: 2em;
     color: white;
+    font-size: 2vw;
+}
+
+input{
+    font-size: 1.2vw;
+}
+
+@media screen and (max-width: 1000px){
+    #userlogin{
+        margin-left: 15vw;
+        margin-right: 15vw;
+        font-size: 3vw;
+    }
+    input{
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 600px){
+    #userlogin{
+        margin-left: 5vw;
+        margin-right: 5vw;
+        font-size: 10vw;
+    }
+
+    input{
+        font-size: 5vw;
+    }
 }

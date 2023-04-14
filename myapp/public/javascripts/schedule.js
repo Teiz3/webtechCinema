@@ -56,3 +56,10 @@ function makeScheduleEntry(scheduleEntry){
     makeElNode("p", getElClass("schedule-day"), scheduleEntry.time);
     makeElNode("p", getElClass("schedule-day"), scheduleEntry.title);
 };
+
+// for(let i=0; i < 14; i++){
+//     let Dates 
+//     // for(let j = 0; j < scheduleTimes.length; j++){
+//     //     prepStmt.run(i.toString() + j.toString(), getDate(i).toLocaleDateString(), getDate(i).toLocaleString("default", {weekday: "long"}), scheduleTimes[j], randomPositiveNumber(movies.length-1));
+//     // };
+// };

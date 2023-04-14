@@ -46,12 +46,24 @@
     background-color: #aa890f;
 }
 
-#page-login .navigation-bar__button--login{
+#page-users-login .navigation-bar__button--login{
     background-color: #aa890f;
 }
 
-#page-signup .navigation-bar__button--signup{
+#page-users-signup .navigation-bar__button--signup{
     background-color: #aa890f;
+}
+
+#page-users-profile .navigation-bar__button--profile{
+    background-color: #aa890f;
+}
+
+
+
+@media screen and (max-width: 1000px){
+    .navigation-bar__button{
+        font-size: 2vw;
+    } 
 }
 
 @media screen and (max-width: 600px) {
@@ -60,7 +72,7 @@
     }
 
     .navigation-bar__button{
-        font-size: 3vw;
+        font-size: 4vw;
     } 
     
     .navigation-bar__container{
