@@ -8,6 +8,7 @@ var router = express.Router();
 var sqlite3 = require("sqlite3").verbose();
 var path = require('path');
 var bcrypt = require('bcrypt');
+const { error } = require('console');
 
 /*get the database by its file location and open it*/
 const file = path.join(__dirname, '../database/cinema.db');
@@ -39,6 +40,23 @@ router.get('/', function(req, res, next){
       }
       res.json(JSON.stringify(rows));
     })
+  })
+
+  router.get('/order/confirm', (req, res) => {
+    const scheduleid = req.query.schedule;
+    const ticketAmount = req.query.tickets;
+    if(req.session.user){
+      const userid = req.session.user.userid;
+      const date = new Date(Date.now()).toLocaleDateString();
+      console.log("date "+date);
+      const prepStmt = db.prepare('INSERT INTO Orders(orderid, schedule, user, date, nroftickets) VALUES (?, ?, ?, ?, ?)');
+      prepStmt.run(Date.now(), scheduleid, userid, date, ticketAmount);
+      prepStmt.finalize();
+    }else{
+      res.send("you need to be logged in in order to buy tickets");
+    }
+
+    console.log("order confirmed!");
   })
 
   

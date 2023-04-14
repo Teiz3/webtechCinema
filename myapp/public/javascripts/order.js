@@ -59,5 +59,8 @@ function ticketAmountChosen(inputNode){
 function confirmOrder(movie, schedule, tickets){
     if(schedule){
         console.log("order confirmed for " + movie.movieid + " on " + schedule.scheduleid + " with " + tickets + " tickets");
+        fetch('./db/order/confirm?schedule=' + schedule.scheduleid + '&tickets=' + tickets).then(
+
+        );
     }
 }
