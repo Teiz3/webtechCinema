@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var path = require('path');
-const baseFolder = (path.join(__dirname, "../"));
+const file = path.join(__dirname, '../');
+console.log("file path: " + file);
 
 // const session = require('express-session');
 // const options = {secret: 'The cake is a lie', resave: false, saveUninitialized: true, cookie: {secure: false}};
@@ -14,7 +15,7 @@ router.route("/login").get((req, res) => {
     res.redirect('profile');
   }
   else{
-    res.render('userlogin', {title: 'Express', folder: baseFolder})
+    res.render('userlogin', {title: 'Express', folder: file})
   }
 }).post((req, res) => {
 
