@@ -79,7 +79,7 @@ function makePoster(movie, parentclass){
 //opens the movie description page of the movie that was pressed
 function openDescriptionPage(movie){
     // console.log("go to description of " + movie);
-    window.open("/movie/" + movie, "_self");
+    window.open("./movie/" + movie, "_self");
 }
 
 /*
