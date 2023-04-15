@@ -85,7 +85,7 @@ function makeOrdersPage(orderInfo){
     if(orderInfo.length != 0){
         makeElNode('h1', getElClass('schedule-container'), 'Order(s):');
     for(let i = 0; i < orderInfo.length; i++){
-        makeElNode('p', getElClass('schedule-container'), 'Title: ' + orderInfo[i].title);
+        makeElNode('p', getElClass('schedule-container'), 'Movie: ' + orderInfo[i].title);
         makeElNode('p', getElClass('schedule-container'), 'Day: ' + orderInfo[i].weekday);
         makeElNode('p', getElClass('schedule-container'), 'Date: ' + orderInfo[i].date);
         makeElNode('p', getElClass('schedule-container'), 'Ticket Amount: ' + orderInfo[i].nroftickets);

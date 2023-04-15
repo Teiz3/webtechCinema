@@ -112,7 +112,7 @@ router.post('/users/signup', async (req, res) => {
       console.log(req.body.username);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const hashedCreditcard = await bcrypt.hash(req.body.creditcard, 10);
-      const sqlInsertUser = 'INSERT INTO Users(userid, fullname, username, password, email, creditcard, street, streetno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+      const sqlInsertUser = 'INSERT OR IGNORE INTO Users(userid, fullname, username, password, email, creditcard, street, streetno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const prepStmt = db.prepare(sqlInsertUser);
       prepStmt.run(Date.now().toString(), req.body.fullname, req.body.username, hashedPassword, req.body.email, hashedCreditcard, req.body.street, req.body.streetno);
       res.redirect('../../users/login')
@@ -189,9 +189,9 @@ router.post('/changeprofile', async (req, res) => {
     res.redirect('../../users/login');  
   }
   if(userName){
-    let usernameSql = 'UPDATE Users SET username = ? WHERE userid = ?';
+    let usernameSql = 'UPDATE Users SET username = ? WHERE userid = ? AND username <> ? AND NOT EXISTS (SELECT 1 FROM Users WHERE username = ?)';
     const prepStmt = db.prepare(usernameSql);
-    prepStmt.run(userName, req.session.user.userid);
+    prepStmt.run(userName, req.session.user.userid, userName, userName);
     res.redirect('../../users/login'); 
   }
   if(email){
