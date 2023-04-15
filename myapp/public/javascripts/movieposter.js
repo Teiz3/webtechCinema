@@ -103,7 +103,7 @@ for(let i=0; i < 7; i++){
 makeElNode("div", getElClass("schedule-container"), "", "schedule-day");
 
 //Get the schedule of the selected weekday
-getSchedule(0);
+setTimeout(getSchedule(0), 1000);
 
 //Get schedule according to weekday
 function getSchedule(offset){
