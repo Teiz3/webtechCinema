@@ -31,17 +31,12 @@ router.get('/', function(req, res, next){
   })
 
   router.get('/schedule', function(req, res, next){
-    console.log("schedule router got request: " + req.url);
     const date = req.query.date;
     let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
-    console.log("sqlSchedule: " + sqlSchedule);
     db.all(sqlSchedule, [date], (err, rows) => {
-      console.log("direct response, err: " + err + ", rows(JSON stringified): " + JSON.stringify(rows))
       if(err){
-        console.log("error: "+err);
         throw(err);
       }
-      console.log("response: " + rows);
       res.json(JSON.stringify(rows));
     })
   })
@@ -59,8 +54,6 @@ router.get('/', function(req, res, next){
     }else{
       res.send("you need to be logged in in order to buy tickets");
     }
-
-    console.log("order confirmed!");
   })
 
   
@@ -69,7 +62,7 @@ router.get('/desc', function(req, res, next){
   console.log("db/desc router activated");
   const movie = req.query.movie;
   let sql = 'SELECT * FROM Movies WHERE Movies.title = ' + '"' + movie + '"';
-  console.log("database.js router sql: " + sql);
+  // console.log("database.js router sql: " + sql);
   db.all(sql, [], (err, rows) => {
     if(err){
       throw(err);
