@@ -75,9 +75,9 @@ function regenerateDatabase(){
     deleteDatabase();
     setTimeout(createDatabase, 100);
     setTimeout(fillMovies, 300);
-    setTimeout(fillSchedule, 300);
-    setTimeout(fillUsers, 300);
-    setTimeout(fillOrders, 300);
+    setTimeout(fillSchedule, 500);
+    setTimeout(fillUsers, 700);
+    setTimeout(fillOrders, 900);
 }
 
 function deleteDatabase(){
