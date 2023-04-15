@@ -107,7 +107,7 @@ getSchedule(0);
 
 //Get schedule according to weekday
 function getSchedule(offset){
-    date = getDate(offset).toLocaleDateString(undefined, {year: "numeric", month: "2-digit", day: "2-digit"});
+    date = getDate(offset).toISOString().slice(0,10);
     fetch("db/schedule?date=" + date)
     .then(res => res.json()).then(
         data => { 
