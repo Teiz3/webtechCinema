@@ -2,7 +2,7 @@ makeElNode('div', document.body, '', 'info-container');
 makeElNode('div', document.body, '', 'schedule-container');
 
 function getUserInfo(){
-    fetch('../../db/profile')
+    fetch('../db/profile')
     .then(res => res.json()).then(
         data => {
             console.log('userinfo fetched');
@@ -13,7 +13,7 @@ function getUserInfo(){
 }
 
 function getOrdersInfo(){
-    fetch('../../db/profile/orders')
+    fetch('../db/profile/orders')
     .then(res => res.json()).then(
         data => {
             console.log('orderinfo fetched');
