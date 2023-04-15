@@ -37,8 +37,10 @@ router.get('/', function(req, res, next){
     let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
     db.all(sqlSchedule, [dateconverted], (err, rows) => {
       if(err){
+        console.log("error: "+err);
         throw(err);
       }
+      console.log("response: " + rows);
       res.json(JSON.stringify(rows));
     })
   })
