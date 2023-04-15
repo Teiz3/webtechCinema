@@ -35,9 +35,9 @@ router.get('/', function(req, res, next){
     const date = req.query.date;
     const dateconverted = date.replace("-", "/").replace("-", "/");
     console.log("dateconverted: " + dateconverted);
-    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
+    let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "19/04/2023"';
     console.log("sqlSchedule: " + sqlSchedule);
-    db.all(sqlSchedule, [dateconverted], (err, rows) => {
+    db.all(sqlSchedule, [], (err, rows) => {
       console.log("direct response, err: " + err + ", rows(JSON stringified): " + JSON.stringify(rows))
       if(err){
         console.log("error: "+err);

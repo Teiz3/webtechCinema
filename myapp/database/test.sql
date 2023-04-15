@@ -19,4 +19,4 @@
 -- INNER JOIN Movies ON Schedule.movieid = movies.movieid
 -- WHERE user = 0;
 
-SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "19/04/2023";
+SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = 19/04/2023;
