@@ -9,7 +9,7 @@ getMovies();
 
 //fetch movie info from database
 function getMovies(){
-    fetch("../db/order?movieid=" + movieid)
+    fetch("./db/order?movieid=" + movieid)
         .then(res => res.json()).then(
             data => { 
                 console.log("movieorder fetched " + data);
