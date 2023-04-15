@@ -21,7 +21,7 @@ function getMovies(){
 //make the page with info from db
 function descriptionPage(movie){
     if(movie){
-        makeElNode("img", getElId("movie-info"), "", "movie-info", "", {src: "../../images/" + movie.image, alt: "poster of the " + movie.title + " movie"});
+        makeElNode("img", getElId("movie-info"), "", "movie-info", "", {src: "./../../images/" + movie.image, alt: "poster of the " + movie.title + " movie"});
         makeElNode('div', getElId("movie-info"), "", "info-container");
         makeElNode("h1", getElClass("info-container"), movie.title, "movie-info");
         makeElNode("p", getElClass("info-container"), movie.desc, "movie-info");
