@@ -10,5 +10,11 @@
 -- FROM Schedule
 -- WHERE schedule.movieid = 4;
 
-SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "14/04/2023";
-SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "14/4/2023"
+-- SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "14/04/2023";
+-- SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = "14/4/2023"
+
+-- SELECT title, weekday, Schedule.date, time, nroftickets
+-- FROM Orders
+-- INNER JOIN Schedule ON  Orders.schedule = Schedule.scheduleid
+-- INNER JOIN Movies ON Schedule.movieid = movies.movieid
+-- WHERE user = 0;

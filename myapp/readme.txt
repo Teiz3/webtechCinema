@@ -1,10 +1,10 @@
-============================================GROUP INFO=====================================================
+============================================GROUP INFO==================================================
 http://webtech.science.uu.nl/group22/
 Group 22
 Authors:
 Ruben de Groot: 4399307
 Thijs Kanters: 2775131
-=========================================SQL Tables====================================================
+=========================================SQL Tables=====================================================
 
 CREATE TABLE Movies (movieid INT UNIQUE, title TEXT NOT NULL UNIQUE, desc TEXT, image TEXT, trailer TEXT, trailerID TEXT, PRIMARY KEY(movieid))
 
@@ -14,11 +14,21 @@ CREATE TABLE Users (userid INT UNIQUE, fullname TEXT, username TEXT, password TE
 
 CREATE TABLE Orders (orderid INT UNIQUE, schedule INT, user INT, date TEXT, nroftickets INT, PRIMARY KEY(orderid), FOREIGN KEY(schedule) REFERENCES Schedule(scheduleid), FOREIGN KEY(user) REFERENCES User(userid))
 
-=========================================LOGIN INFO=======================================================
-
+=========================================USER INFO=======================================================
+userid	fullname	        username	    password	                        email	                        street	                    streetno        creditcard
+0	    Ruben de Groot	    Rubarber	    feestwinkel	                        r.m.degroot@students.uu.nl	    Koele Jongens Straat	    420 	        24432
+1	    Thijs Kanters	    Teiz	        fopshop	                            t.kanters@students.uu.nl	    Koele Jongens Straat	    421	            53123
+2	    Gordon	            NotGordon	    ikbengeensteenikbeneenpersoon	    gordon@gmail.com	            Zanger Straat	            43	            63432
+3	    Peter Lub	        DieGroene	    tattoovanjouwnaam	                kud@outlook.com	                Animatie Straat	            1	            25641
+4	    Geralt of Rivia	    Roach	        windshowling	                    gor@gmail.com	                Game Straat	                3	            73214
 ======================================SITE EXPLANATION====================================================
 Brief explanation: 
-Our website is called Popcorn Cinema, at the home page you can 
+Our website is called Popcorn Cinema, to access our old website(from HW1 and HW2, click on Spongebob Movies in the footer).
+At the beginning of the home page you can cycle through all our 20 movies in our database using pagination, below that is the schedule of movies for the coming week, you can also browse through the schedule using pagination.
+You can click on the movies at the top of in the schedule section to get to the description page of our website. This show the poster, small description and a trailer playing in the background(sometimes you have to refresh the page for the trailer to play).
+If you are logged in to our website in this screen you can get access to the order page by clicking order tickets. At the order page you can select a date, time and amount of tickets to order for your movies.
+Furthermore we have a login and signup page where you can login and signup respectively and once logged in you get a profile page with your user information and ticket history and a signout button will appear in the navbar.
+
 
 Structure of application:
 - The database folder contains all code that is related to making and filling the database

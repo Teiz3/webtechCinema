@@ -1,4 +1,5 @@
-makeElNode('div', document.body, '', 'info-container')
+makeElNode('div', document.body, '', 'info-container');
+makeElNode('div', document.body, '', 'schedule-container');
 
 function getUserInfo(){
     fetch('../../db/profile')
@@ -7,6 +8,17 @@ function getUserInfo(){
             console.log('userinfo fetched');
             userInfo = JSON.parse(data);
             makeProfilePage(userInfo[0]);
+        }
+    )
+}
+
+function getOrdersInfo(){
+    fetch('../../db/profile/orders')
+    .then(res => res.json()).then(
+        data => {
+            console.log('orderinfo fetched');
+            orderInfo = JSON.parse(data);
+            makeOrdersPage(orderInfo);
         }
     )
 }
@@ -29,6 +41,14 @@ function makeProfilePage(userInfo){
     makeElNode('input', getElId('input-container__uname'), '', '', '', {type: 'submit', value: 'Change'});
     makeElNode('hr', getElClass('info-container'), '', 'hr');
 
+    // form for email
+    makeElNode('form', getElClass('info-container'), '', 'form__email', '', {action: '/db/changeprofile', method: 'POST'});
+    makeElNode('label', getElClass('form__email'), 'Email:', '', '', {for: 'email'});
+    makeElNode('div', getElClass('form__email'), '', 'input-container', 'input-container__email');
+    makeElNode('input', getElId('input-container__email'), '', '', 'email', {type: 'text', name: 'email', placeholder: userInfo.email});
+    makeElNode('input', getElId('input-container__email'), '', '', '', {type: 'submit', value: 'Change'});
+    makeElNode('hr', getElClass('info-container'), '', 'hr');
+
     //Form for password
     makeElNode('form', getElClass('info-container'), '', 'form__password', '', {action: '/db/changeprofile', method: 'POST'});
     makeElNode('label', getElClass('form__password'), 'Password:', '', '', {for: 'password'});
@@ -37,12 +57,12 @@ function makeProfilePage(userInfo){
     makeElNode('input', getElId('input-container__password'), '', '', '', {type: 'submit', value: 'Change'});
     makeElNode('hr', getElClass('info-container'), '', 'hr');
 
-    // form for email
-    makeElNode('form', getElClass('info-container'), '', 'form__email', '', {action: '/db/changeprofile', method: 'POST'});
-    makeElNode('label', getElClass('form__email'), 'Email:', '', '', {for: 'email'});
-    makeElNode('div', getElClass('form__email'), '', 'input-container', 'input-container__email');
-    makeElNode('input', getElId('input-container__email'), '', '', 'email', {type: 'text', name: 'email', placeholder: userInfo.email});
-    makeElNode('input', getElId('input-container__email'), '', '', '', {type: 'submit', value: 'Change'});
+    // form for creditcard
+    makeElNode('form', getElClass('info-container'), '', 'form__creditcard', '', {action: '/db/changeprofile', method: 'POST'});
+    makeElNode('label', getElClass('form__creditcard'), 'Creditcard:', '', '', {for: 'creditcard'});
+    makeElNode('div', getElClass('form__creditcard'), '', 'input-container', 'input-container__creditcard');
+    makeElNode('input', getElId('input-container__creditcard'), '', '', 'creditcard', {type: 'number', name: 'creditcard', placeholder: '******'});
+    makeElNode('input', getElId('input-container__creditcard'), '', '', '', {type: 'submit', value: 'Change'});
     makeElNode('hr', getElClass('info-container'), '', 'hr');
 
     // Form for street name
@@ -61,4 +81,19 @@ function makeProfilePage(userInfo){
     makeElNode('input', getElId('input-container__streetno'), '', '', '', {type: 'submit', value: 'Change'});
 };
 
+function makeOrdersPage(orderInfo){
+    makeElNode('h1', getElClass('schedule-container'), 'Order(s):');
+    for(let i = 0; i < orderInfo.length; i++){
+        makeElNode('p', getElClass('schedule-container'), 'Title: ' + orderInfo[i].title);
+        makeElNode('p', getElClass('schedule-container'), 'Day: ' + orderInfo[i].weekday);
+        makeElNode('p', getElClass('schedule-container'), 'Date: ' + orderInfo[i].date);
+        makeElNode('p', getElClass('schedule-container'), 'Ticket Amount: ' + orderInfo[i].nroftickets);
+        if(i != orderInfo.length - 1){
+            makeElNode('hr', getElClass('schedule-container'), '', 'hr');
+        }
+        
+    }
+}
+
 getUserInfo();
+getOrdersInfo();

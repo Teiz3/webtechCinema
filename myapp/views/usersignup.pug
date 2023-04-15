@@ -13,27 +13,32 @@ block content
             br
             input#fullname(type='text' name='fullname' value='')
             br
-            label(for='username') Username:
+            label(for='username') *Username:
             br
             input#username(type='text' name='username' value='' required)
             br
-            label(for='password') Password:
+            label(for='password') *Password:
             br
             input#password(type='password' name='password' value='' required)
             br
-            label(for='email') Email:
+            label(for='email') *Email:
             br
             input#email(type='email' name='email' value='' required)
             br
-            label(for='adress') Adress:
+            label(for='street') Street:
             br
-            input#adress(type='text' name='adress' value='')
+            input#street(type='text' name='street' value='')
             br
-            label(for='creditcard') Creditcard:
+            label(for='streetno') Street Number:
             br
-            input#creditcard(type='text' name='creditcard' value='')
+            input#streetno(type='number' name='streetno' value='')
+            br
+            label(for='creditcard') *Creditcard:
+            br
+            input#creditcard(type='number' name='creditcard' value='' required)
             br
             input(type='submit' value='Submit')
+        p Everything with a * is required
 
 
 

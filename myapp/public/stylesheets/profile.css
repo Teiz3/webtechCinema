@@ -1,8 +1,8 @@
-.info-container{
+.info-container, .schedule-container{
     margin-left: 25vw;
     margin-right: 25vw;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
     padding-top: 2vw;
     padding-bottom: 2vw;
     color: white;
@@ -12,14 +12,20 @@
     border-radius: 7px;
 }
 
+
 .info-container p{
     margin-left: 4vw;
     margin-right: 4vw;
 }
 
-.info-container form{
+.info-container form, .schedule-container p{
     margin-left: 4vw;
     margin-right: 4vw;
+}
+
+.schedule-container p{
+    text-align: center;
+    font-size: 2vw;
 }
 
 .hr{
@@ -49,23 +55,23 @@ input::-moz-placeholder {
 }
 
 @media screen and (max-width: 1000px){
-    .info-container{
+    .info-container, .schedule-container{
         margin-left: 15vw;
         margin-right: 15vw;
         font-size: 3vw;
     }
-    input{
+    input, .schedule-container{
         font-size: 2vw;
     }
 }
 
 @media screen and (max-width: 600px){
-    .info-container{
+    .info-container, .schedule-container p{
         margin-left: 5vw;
         margin-right: 5vw;
         font-size: 10vw;
     }
-    input{
+    input, .schedule-container p{
         font-size: 5vw;
     }
 }

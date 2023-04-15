@@ -106,9 +106,10 @@ router.post('/users/signup', async (req, res) => {
   try{
       console.log(req.body.username);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const sqlInsertUser = 'INSERT INTO Users(userid, username, email, password) VALUES (?, ?, ?, ?)';
+      const hashedCreditcard = await bcrypt.hash(req.body.creditcard, 10);
+      const sqlInsertUser = 'INSERT INTO Users(userid, fullname, username, password, email, creditcard, street, streetno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const prepStmt = db.prepare(sqlInsertUser);
-      prepStmt.run(Date.now().toString(), req.body.username, req.body.email, hashedPassword);
+      prepStmt.run(Date.now().toString(), req.body.fullname, req.body.username, hashedPassword, req.body.email, hashedCreditcard, req.body.street, req.body.streetno);
       res.redirect('../../users/login')
   }catch{
     res.redirect('../../users/signup');
@@ -156,6 +157,17 @@ router.get('/profile', (req, res) => {
   })
 })
 
+router.get('/profile/orders', (req, res) => {
+  const ordersSQL = 'SELECT title, weekday, Schedule.date, time, nroftickets FROM Orders INNER JOIN Schedule ON Orders.schedule = Schedule.scheduleid INNER JOIN Movies ON Schedule.movieid = movies.movieid WHERE user = ?';
+  db.all(ordersSQL, req.session.user.userid, (err, rows) => {
+    if(err){
+      throw(err);
+    }
+    res.json(JSON.stringify(rows));
+  })
+})
+
+
 router.post('/changeprofile', async (req, res) => {
   try{
   const fullName = req.body.fname;
@@ -164,6 +176,7 @@ router.post('/changeprofile', async (req, res) => {
   const street = req.body.street;
   const streetno = req.body.streetno;
   const password = req.body.password;
+  const creditcard = req.body.creditcard;
   if(fullName){
     let fullNameSql = 'UPDATE Users SET fullname = ? WHERE userid = ?';
     const prepStmt = db.prepare(fullNameSql);
@@ -200,6 +213,13 @@ router.post('/changeprofile', async (req, res) => {
     const prepStmt = db.prepare(passwordSql);
     prepStmt.run(hashedPassword, req.session.user.userid);
     res.redirect('../../users/login'); 
+  }
+  if(creditcard){
+    const hashedCreditcard = await bcrypt.hash(req.body.creditcard, 10);
+    let creditcardSql = 'UPDATE Users SET creditcard = ? WHERE userid = ?';
+    const prepStmt = db.prepare(creditcardSql);
+    prepStmt.run(hashedCreditcard, req.session.user.userid);
+    res.redirect('../../users/login');
   }
   }
   catch(error){

@@ -1,5 +1,46 @@
 var path = require('path');
 var sqlite3 = require("sqlite3").verbose();
+var bcrypt = require('bcrypt');
+
+class User{
+    constructor(fullname, username, password, email, street, streetno, creditcard){
+        this.fullname = fullname;
+        this.username = username;
+        this.password = bcrypt.hashSync(password, 10);
+        this.email = email;
+        this.street = street;
+        this.streetno = streetno;
+        this.creditcard = bcrypt.hashSync('' + creditcard, 10);
+    }
+};
+
+user0 = new User('Ruben de Groot', 'Rubarber', 'feestwinkel', 'r.m.degroot@students.uu.nl', 'Koele Jongens Straat', 420, 24432);
+user1 = new User('Thijs Kanters', 'Teiz', 'fopshop', 't.kanters@students.uu.nl', 'Koele Jongens Straat', 421, 53123);
+user2 = new User('Gordon', 'NotGordon', 'ikbengeensteenikbeneenpersoon', 'gordon@gmail.com', 'Zanger Straat', 43, 63432);
+user3 = new User('Peter Lub', 'DieGroene', 'tattoovanjouwnaam', 'kud@outlook.com', 'Animatie Straat', 1, 25641);
+user4 = new User('Geralt of Rivia', 'Roach', 'windshowling', 'gor@gmail.com', 'Game Straat', 3, 73214);
+const users = [user0, user1, user2, user3, user4];
+
+class Order{
+    constructor(schedule, user, date, nroftickets){
+        this.schedule = schedule;
+        this.user = user;
+        this.date = date;
+        this.nroftickets = nroftickets;
+    }
+}
+order0 = new Order(12, 0, '16/04/2023', 2);
+order1 = new Order(50, 0, '20/04/2023', 2);
+order2 = new Order(63, 1, '21/04/2023', 2);
+order3 = new Order(71, 1, '22/04/2023', 5);
+order4 = new Order(100, 2, '25/04/2023', 1);
+order5 = new Order(111, 2, '26/04/2023', 6);
+order6 = new Order(121, 2, '27/04/2023', 4);
+order7 = new Order(30, 3, '18/04/2023', 6);
+order8 = new Order(51, 3, '20/04/2023', 3);
+order9 = new Order(12, 3, '16/04/2023', 3);
+const orders = [order0, order1, order2, order3, order4, order5, order6, order7, order8, order9];
+
 
 //data to be put in the movie table
 const movies = [
@@ -25,6 +66,7 @@ const movies = [
     ["Star Wars IV: A New Hope", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.", "Star_Wars_IV_A_New_Hope.jpg", "https://www.youtube.com/embed/vZ734NWnAHA", "vZ734NWnAHA"]
 ];
 
+
 const scheduleTimes = ["11:00", "13:00", "16:00", "20:00"];
 
 function regenerateDatabase(){
@@ -34,6 +76,8 @@ function regenerateDatabase(){
     setTimeout(createDatabase, 100);
     setTimeout(fillMovies, 300);
     setTimeout(fillSchedule, 300);
+    setTimeout(fillUsers, 300);
+    setTimeout(fillOrders, 300);
 }
 
 function deleteDatabase(){
@@ -58,7 +102,7 @@ function createDatabase(){
     db.run(sqlCreateMovies);
     const sqlCreateSchedule = 'CREATE TABLE Schedule (scheduleid INT, date TEXT, weekday TEXT, time TEXT, movieid INT, PRIMARY KEY(scheduleid), FOREIGN KEY(movieid) REFERENCES Movies(movieid))';
     db.run(sqlCreateSchedule);
-    const sqlCreateUsers = 'CREATE TABLE Users (userid INT UNIQUE, fullname TEXT, username TEXT, password TEXT, email TEXT, street TEXT, streetno INT, creditcard INT, PRIMARY KEY(userid))';
+    const sqlCreateUsers = 'CREATE TABLE Users (userid INT UNIQUE, fullname TEXT, username TEXT UNIQUE, password TEXT, email TEXT, street TEXT, streetno INT, creditcard INT, PRIMARY KEY(userid))';
     db.run(sqlCreateUsers);
     const sqlCreateOrders = 'CREATE TABLE Orders (orderid INT UNIQUE, schedule INT, user INT, date TEXT, nroftickets INT, PRIMARY KEY(orderid), FOREIGN KEY(schedule) REFERENCES Schedule(scheduleid), FOREIGN KEY(user) REFERENCES User(userid))';
     db.run(sqlCreateOrders);
@@ -101,6 +145,30 @@ function fillSchedule(){
     prepStmt.finalize();
     db.close();
     console.log("finished filling schedule");
+}
+
+function fillUsers(){
+    let db = getDatabase();
+    console.log('started filling users');
+    const prepStmt = db.prepare('INSERT INTO Users(userid, fullname, username, password, email, street, streetno, creditcard) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    for(let i=0; i < users.length; i++){
+        prepStmt.run(i, users[i].fullname, users[i].username, users[i].password, users[i].email, users[i].street, users[i].streetno, users[i].creditcard);
+    }
+    prepStmt.finalize();
+    db.close();
+    console.log('finished filling users');
+}
+
+function fillOrders(){
+    let db = getDatabase();
+    console.log('started filling orders');
+    const prepStmt = db.prepare('INSERT INTO Orders(orderid, schedule, user, date, nroftickets) VALUES (?, ?, ?, ?, ?)');
+    for(let i=0; i < orders.length; i++){
+        prepStmt.run(i, orders[i].schedule, orders[i].user, orders[i].date, orders[i].nroftickets)
+    }
+    prepStmt.finalize();
+    db.close();
+    console.log('finished filling orders');
 }
 
 function getDate(offset){
