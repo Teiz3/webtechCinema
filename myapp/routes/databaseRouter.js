@@ -32,7 +32,7 @@ router.get('/', function(req, res, next){
 
   router.get('/schedule', function(req, res, next){
     const date = req.query.date;
-    const dateconverted = date.replace(/-/g, "/");
+    const dateconverted = date.replace("-", "/").replace("-", "/");
     let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
     db.all(sqlSchedule, [dateconverted], (err, rows) => {
       if(err){
