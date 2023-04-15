@@ -4,8 +4,8 @@ var router = express.Router();
 
 
 
-var dbfill = require("./dbfill");
-dbfill.regenerateDatabase();
+// var dbfill = require("./dbfill");
+// dbfill.regenerateDatabase();
     
     
     
