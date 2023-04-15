@@ -13,6 +13,12 @@ router.get('/', function(req, res, next) {
 
 /* GET order page */
 router.get('/order', (req, res) => {
-    res.render('order');
+    if(req.session.user){
+        res.render('order', {title: 'Popcorn Cinema', loggedIn: true});
+    }
+    else{
+        res.render('index', {title: 'Popcorn Cinema'});
+    }
+    
 })
 module.exports = router;

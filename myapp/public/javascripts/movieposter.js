@@ -138,7 +138,8 @@ function makeSchedule(dbSchedule){
 function makeScheduleEntry(scheduleEntry){
     makeElNode('div', getElClass('schedule-day'), '', 'image-container', scheduleEntry.date + scheduleEntry.time);
     makeElNode("img", getElId(scheduleEntry.date + scheduleEntry.time), "", "schedule-day__image", "", {src: "images/" + scheduleEntry.image, alt: "poster of the " + scheduleEntry.title + " movie"});
-    makeElNode("p", getElId(scheduleEntry.date + scheduleEntry.time), scheduleEntry.time);
-    makeElNode("p", getElId(scheduleEntry.date + scheduleEntry.time), scheduleEntry.title);
+    makeElNode('div',getElId(scheduleEntry.date + scheduleEntry.time), '', '', scheduleEntry.date + scheduleEntry.time + '-pcontainer');
+    makeElNode("p", getElId(scheduleEntry.date + scheduleEntry.time + '-pcontainer'), scheduleEntry.time);
+    makeElNode("p", getElId(scheduleEntry.date + scheduleEntry.time + '-pcontainer'), scheduleEntry.title);
     getElId(scheduleEntry.date + scheduleEntry.time).addEventListener("click", function(){openDescriptionPage(scheduleEntry.title), false});
 };

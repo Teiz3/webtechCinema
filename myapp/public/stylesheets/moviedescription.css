@@ -17,8 +17,14 @@ body{
     color: white;
 }
 
-.info-container p{
+.info-container p, .info-container a{
   font-size: 2vw;
+}
+
+.info-container a{
+  display: block;
+  text-align: center;
+  color: #f5c518;
 }
 
 h1{
@@ -74,7 +80,7 @@ img.movie-info{
       margin-left: auto;
       margin-right: auto;
     }
-    .info-container p{
+    .info-container p, .info-container a{
       font-size: 5vw;
       text-align: center;
     }
@@ -84,5 +90,11 @@ img.movie-info{
       text-align: center;
     }
 
+    .trailer-container{
+      display: none;
+    }
 
-  }
+    body{
+      overflow: visible;
+    }
+}

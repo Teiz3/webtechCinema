@@ -27,9 +27,36 @@ h1{
 
 .schedule-container h2{
     text-align: center;
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
-.schedule-container button{
+.schedule-container button, .schedule-container input{
+    font-size: 1vw;
+}
+
+.confirming-container, .confirming-container button{
     font-size: 2vw;
+}
+
+@media screen and (max-width: 600px){
+    .movie-container{
+        grid-template-columns: 1fr;
+    }
+
+    .confirming-container, .confirming-container button{
+        font-size: 7vw;
+    }
+
+    .schedule-container h2{
+        text-align: center;
+        font-size: 8vw;
+    }
+    
+    .schedule-container button, .schedule-container input{
+        font-size: 4vw;
+    }
+
+    .schedule-container{
+        margin-bottom: 50vw;
+    }
 }

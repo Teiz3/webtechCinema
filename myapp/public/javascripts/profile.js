@@ -82,7 +82,8 @@ function makeProfilePage(userInfo){
 };
 
 function makeOrdersPage(orderInfo){
-    makeElNode('h1', getElClass('schedule-container'), 'Order(s):');
+    if(orderInfo.length != 0){
+        makeElNode('h1', getElClass('schedule-container'), 'Order(s):');
     for(let i = 0; i < orderInfo.length; i++){
         makeElNode('p', getElClass('schedule-container'), 'Title: ' + orderInfo[i].title);
         makeElNode('p', getElClass('schedule-container'), 'Day: ' + orderInfo[i].weekday);
@@ -93,6 +94,7 @@ function makeOrdersPage(orderInfo){
         }
         
     }
+    }   
 }
 
 getUserInfo();
