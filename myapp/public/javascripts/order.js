@@ -22,8 +22,8 @@ let chosenSchedule = null;
 
 function orderPage(movie, schedule){
     //show some info of the movie that you are buying tickets for
-    makeElNode("img", getElClass("movie-container"), "", "", "", {src: "../images/" + movie.image});
-    makeElNode("div", getElClass("movie-container"), "", "schedule-container", "", {src: "../images/" + movie.image});
+    makeElNode("img", getElClass("movie-container"), "", "", "", {src: "./images/" + movie.image});
+    makeElNode("div", getElClass("movie-container"), "", "schedule-container", "");
     makeElNode('h2', getElClass("schedule-container"), movie.title);
     //generate buttons with all available schedule times
     for(let i = 0; i < schedule.length; i++){
