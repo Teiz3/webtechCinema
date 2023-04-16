@@ -1,5 +1,5 @@
 /*
-  Router for all requests with /db, used to get and post data from the database
+  Router for all requests with /db, used to get and post data from the database (this is the only place with access to the database)
 */
 
 /*Require all needed modules*/
@@ -29,7 +29,7 @@ router.get('/', function(req, res, next){
       res.json(JSON.stringify(rows));
     })
   })
-
+/*get request router for /db/schedule. Used by homepage to load schedule info from db*/
   router.get('/schedule', function(req, res, next){
     const date = req.query.date;
     let sqlSchedule = 'SELECT weekday, time, Schedule.movieid, title, date, image FROM Schedule INNER JOIN Movies ON Schedule.movieid = Movies.movieid WHERE date = ?';
@@ -40,7 +40,7 @@ router.get('/', function(req, res, next){
       res.json(JSON.stringify(rows));
     })
   })
-
+/*get request router for /db/order/confirm. Used by order page to insert order info in db*/
   router.get('/order/confirm', (req, res) => {
     const scheduleid = req.query.schedule;
     const ticketAmount = req.query.tickets;
@@ -76,7 +76,7 @@ router.get('/desc', function(req, res, next){
   })
 })
 
-/*get router for /db/desc, used by the descriptionpage to fetch data of 1 movie from db*/
+/*get router for /db/order, used by the order page to fetch data of 1 movie and all its schedule info from db*/
 router.get('/order', (req, res, next) => {
   const movieid = req.query.movieid;
   // req.session.user.movieid = movieid;
@@ -112,7 +112,7 @@ router.post('/users/signup', async (req, res) => {
     res.redirect('../../users/signup');
   }
 })
-
+/*POST router for /db/users/login. Used to authenticate users from loginpage*/
 router.post('/users/login', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -143,7 +143,7 @@ router.post('/users/login', async (req, res) => {
   })
 
 });
-
+/*get request router for /db/profile. Used by profile page to load user info from db*/
 router.get('/profile', (req, res) => {
   const profileSQL = 'SELECT * FROM Users WHERE userid = ?';
   db.all(profileSQL, req.session.user.userid, (err, rows) => {
@@ -153,7 +153,7 @@ router.get('/profile', (req, res) => {
     res.json(JSON.stringify(rows));
   })
 })
-
+/*get request router for /db/profile/orders. Used by profile page to load all the orders from a user from db*/
 router.get('/profile/orders', (req, res) => {
   const ordersSQL = 'SELECT title, weekday, Schedule.date, time, nroftickets FROM Orders INNER JOIN Schedule ON Orders.schedule = Schedule.scheduleid INNER JOIN Movies ON Schedule.movieid = movies.movieid WHERE user = ?';
   db.all(ordersSQL, req.session.user.userid, (err, rows) => {
@@ -164,7 +164,7 @@ router.get('/profile/orders', (req, res) => {
   })
 })
 
-
+/*POST router for /db/changeprofile. Used by profile page to change user data in db*/
 router.post('/changeprofile', async (req, res) => {
   try{
   const fullName = req.body.fname;

@@ -1,3 +1,7 @@
+/*
+  Main server file
+*/
+//require statements
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -22,6 +26,7 @@ var fs = require("fs");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//standard settings like logging and static files
 const logStream = fs.createWriteStream(path.join(__dirname, 'logs.log'), { flags: 'a' });
 app.use(logger('dev', {stream: logStream}));
 app.use(express.json());
@@ -29,12 +34,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//use the routers
 app.use('/', indexRouter);
 app.use('/movie', descriptionRouter);
 app.use('/users', usersRouter);
 app.use('/db', databaseRouter);
 
-//database setup
+//database setup (now only used to regenerate the database during development)
 var databaseManager = require('./database/databaseManager');
 app.use('/', databaseManager);
 

@@ -1,7 +1,10 @@
-const maxMoviesPerPage = 5;
-let page = 0;
-let dbMovies = [];
-let buttonAmount = 4;
+/*
+    Generates the home page
+*/
+const maxMoviesPerPage = 5; //number of movies showed on the home page at a time
+let page = 0; //current page of displayed movies
+let dbMovies = []; //result from fetch
+let buttonAmount = 4; //amount of buttons needed to select the pages
 
 //setup container for posters
 makeElNode("div", document.body, "", "movie-container");
@@ -51,7 +54,7 @@ function decrementPage(){
 
 //loadpage
 function loadPage(pageNo){
-    page = pageNo - 1;
+    page = pageNo - 1; //acount for 0-based indexing
     getMovies();
 }
 
@@ -89,8 +92,8 @@ const d = new Date();
 const dateOnly = d.getDate();
 const month = "-" + (d.getMonth()+1);
 
-makeElNode("hr", document.body, "", "hr");
 //setup container for schedule
+makeElNode("hr", document.body, "", "hr");
 makeElNode("div", document.body, "", "schedule-container");
 
 //Make weekday buttons
@@ -116,6 +119,7 @@ function getSchedule(offset){
         });
 };
 
+//gets the current date and adds the amount of days specified in offset to it
 function getDate(offset){
     var date = new Date(Date.now());
     let today = date.getDate();
@@ -135,6 +139,7 @@ function makeSchedule(dbSchedule){
     }
 };
 
+//make a schedule entry
 function makeScheduleEntry(scheduleEntry){
     makeElNode('div', getElClass('schedule-day'), '', 'image-container', scheduleEntry.date + scheduleEntry.time);
     makeElNode("img", getElId(scheduleEntry.date + scheduleEntry.time), "", "schedule-day__image", "", {src: "images/" + scheduleEntry.image, alt: "poster of the " + scheduleEntry.title + " movie"});

@@ -1,9 +1,8 @@
+/*
+  router for the user profile, signup and login
+*/
 var express = require('express');
 var router = express.Router();
-
-// const session = require('express-session');
-// const options = {secret: 'The cake is a lie', resave: false, saveUninitialized: true, cookie: {secure: false}};
-// router.use(session(options));
 
 /* GET Userlogin page. */
 router.route("/login").get((req, res) => {
@@ -24,6 +23,7 @@ router.route("/signup").get((req, res) => {
 
 });
 
+/* Routing for /profile page*/
 router.get('/profile', function (req, res) {
   if(req.session.user){
     const username = req.session.user.username;
@@ -34,6 +34,7 @@ router.get('/profile', function (req, res) {
   }
 });
 
+/* Routing for /logout */
 router.get('/logout', function (req, res) {
   req.session.destroy(function (err) {
     if(err){

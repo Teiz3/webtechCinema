@@ -1,6 +1,11 @@
+/*
+    Generate your profile page
+*/
+//containers for page content
 makeElNode('div', document.body, '', 'info-container');
 makeElNode('div', document.body, '', 'schedule-container');
 
+//gets all info of the user
 function getUserInfo(){
     fetch('../db/profile')
     .then(res => res.json()).then(
@@ -11,7 +16,7 @@ function getUserInfo(){
         }
     )
 }
-
+//gets info of previous orders linked to this account
 function getOrdersInfo(){
     fetch('../db/profile/orders')
     .then(res => res.json()).then(
@@ -81,6 +86,7 @@ function makeProfilePage(userInfo){
     makeElNode('input', getElId('input-container__streetno'), '', '', '', {type: 'submit', value: 'Change'});
 };
 
+//display all orders from this account
 function makeOrdersPage(orderInfo){
     if(orderInfo.length != 0){
         makeElNode('h1', getElClass('schedule-container'), 'Order(s):');
@@ -96,6 +102,6 @@ function makeOrdersPage(orderInfo){
     }
     }   
 }
-
+//call the get functions
 getUserInfo();
 getOrdersInfo();

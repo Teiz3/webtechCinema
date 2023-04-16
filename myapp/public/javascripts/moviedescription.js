@@ -1,3 +1,6 @@
+/*
+    Generates the description page of a movie (the page that is loaded when you click on a movie on the home page)
+*/
 //get the name of the movie from the url
 const URLPath = window.location.pathname;
 const movieFromUrl = URLPath.split('/').pop();

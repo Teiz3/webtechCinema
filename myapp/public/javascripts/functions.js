@@ -1,3 +1,7 @@
+/*
+    A small collection of functions needed by multiple files (mostly to generate HTML via DOM manipulation)
+*/
+
 //function to make element nodes
 function makeElNode(elementType, parent=document.body, text, className, idName, attributes){
     var newNode = document.createElement(elementType);

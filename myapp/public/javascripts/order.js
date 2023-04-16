@@ -1,3 +1,7 @@
+/*
+    Generates the order page
+*/
+
 //get the name of the movie from the url
 const URLPath = window.location.href;
 const queryFromUrl = URLPath.split('?').pop();
@@ -20,6 +24,7 @@ function getMovies(){
 
 let chosenSchedule = null;
 
+//generated the order page
 function orderPage(movie, schedule){
     //show some info of the movie that you are buying tickets for
     makeElNode("img", getElClass("movie-container"), "", "", "", {src: "./images/" + movie.image});
@@ -47,15 +52,18 @@ function orderPage(movie, schedule){
 
 }
 
+//function gets called when you select a 
 function timeChosen(schedule){
-    console.log("I am the chosen one " + schedule.scheduleid);
+    // console.log("I am the chosen one " + schedule.scheduleid);
     getElId("date-chosen").childNodes[0].textContent = "Date: " + schedule.date;
     getElId("timeslot-chosen").childNodes[0].textContent = "Time: " + schedule.time;
     chosenSchedule = schedule;
 }
+//function gets called when you change the number of tickets
 function ticketAmountChosen(inputNode){
     getElId("ticketAmount-chosen").childNodes[0].textContent = "Ticket amount: " + inputNode.value;
 }
+//function gets called when you click the confirm order button and fetches your data( to be stored in the db)
 function confirmOrder(movie, schedule, tickets){
     if(schedule){
         console.log("order confirmed for " + movie.movieid + " on " + schedule.scheduleid + " with " + tickets + " tickets");

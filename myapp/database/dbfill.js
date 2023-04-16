@@ -1,3 +1,6 @@
+/*
+    This file deletes, creates and fills the database. Used during development when changes where made to the database.
+*/
 var path = require('path');
 var sqlite3 = require("sqlite3").verbose();
 var bcrypt = require('bcrypt');
@@ -67,10 +70,10 @@ const movies = [
 ];
 
 
-const scheduleTimes = ["11:00", "13:00", "16:00", "20:00"];
+const scheduleTimes = ["11:00", "13:00", "16:00", "20:00"]; //all the times a movie is played in our schedule
 
+//this function is called by the databasemanager to regenerate the database
 function regenerateDatabase(){
-    // var db = new sqlite3.Database(path.join(__dirname, 'cinema.db'));
     
     deleteDatabase();
     setTimeout(createDatabase, 100);
@@ -80,6 +83,7 @@ function regenerateDatabase(){
     setTimeout(fillOrders, 900);
 }
 
+//deletes all the old tables
 function deleteDatabase(){
     let db = getDatabase();
     console.log("started deleting");
@@ -95,6 +99,7 @@ function deleteDatabase(){
     console.log("finished deleting");
 }
 
+//creates all tables in the database
 function createDatabase(){
     let db = getDatabase();
     console.log("start creating");
@@ -114,8 +119,6 @@ function createDatabase(){
 function getDatabase(){
     return new sqlite3.Database(path.join(__dirname, 'cinema.db'));
 }
-
-
 
 //fills the movie table with all the movie info specified in the movies array above
 function fillMovies(){
@@ -147,6 +150,7 @@ function fillSchedule(){
     console.log("finished filling schedule");
 }
 
+//fills the schedule table with all user information
 function fillUsers(){
     let db = getDatabase();
     console.log('started filling users');
@@ -159,6 +163,7 @@ function fillUsers(){
     console.log('finished filling users');
 }
 
+//fills the schedule table with all order information
 function fillOrders(){
     let db = getDatabase();
     console.log('started filling orders');
@@ -171,6 +176,7 @@ function fillOrders(){
     console.log('finished filling orders');
 }
 
+//gets the current date and adds "offset" days to it (needed for generating a schedule)
 function getDate(offset){
     var date = new Date(Date.now());
     let today = date.getDate();
@@ -179,10 +185,10 @@ function getDate(offset){
     return date;
 }
 
+//returns a random positive number between 0 and max
 function randomPositiveNumber(max){
     var randomNumber = Math.floor(Math.random() * max);
     return randomNumber;
 }
-
 
 module.exports = {regenerateDatabase};
