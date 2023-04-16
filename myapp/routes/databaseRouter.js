@@ -178,50 +178,50 @@ router.post('/changeprofile', async (req, res) => {
     let fullNameSql = 'UPDATE Users SET fullname = ? WHERE userid = ?';
     const prepStmt = db.prepare(fullNameSql);
     prepStmt.run(fullName, req.session.user.userid);
-    res.redirect('../../users/login');  
+    res.redirect('../users/login');  
   }
   if(userName){
     let usernameSql = 'UPDATE Users SET username = ? WHERE userid = ? AND username <> ? AND NOT EXISTS (SELECT 1 FROM Users WHERE username = ?)';
     const prepStmt = db.prepare(usernameSql);
     prepStmt.run(userName, req.session.user.userid, userName, userName);
-    res.redirect('../../users/login'); 
+    res.redirect('../users/login'); 
   }
   if(email){
     let emailSql = 'UPDATE Users SET email = ? WHERE userid = ?';
     const prepStmt = db.prepare(emailSql);
     prepStmt.run(email, req.session.user.userid);
-    res.redirect('../../users/login'); 
+    res.redirect('../users/login'); 
   }
   if(street){
     let streetSql = 'UPDATE Users SET street = ? WHERE userid = ?';
     const prepStmt = db.prepare(streetSql);
     prepStmt.run(street, req.session.user.userid);
-    res.redirect('../../users/login'); 
+    res.redirect('../users/login'); 
   }
   if(streetno){
     let streetNoSql = 'UPDATE Users SET streetno = ? WHERE userid = ?';
     const prepStmt = db.prepare(streetNoSql);
     prepStmt.run(streetno, req.session.user.userid);
-    res.redirect('../../users/login'); 
+    res.redirect('../users/login'); 
   }
   if(password){
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     let passwordSql = 'UPDATE Users SET password = ? WHERE userid = ?';
     const prepStmt = db.prepare(passwordSql);
     prepStmt.run(hashedPassword, req.session.user.userid);
-    res.redirect('../../users/login'); 
+    res.redirect('../users/login'); 
   }
   if(creditcard){
     const hashedCreditcard = await bcrypt.hash(req.body.creditcard, 10);
     let creditcardSql = 'UPDATE Users SET creditcard = ? WHERE userid = ?';
     const prepStmt = db.prepare(creditcardSql);
     prepStmt.run(hashedCreditcard, req.session.user.userid);
-    res.redirect('../../users/login');
+    res.redirect('../users/login');
   }
   }
   catch(error){
     console.log(error);
-    res.redirect('../../users/signup');
+    res.redirect('../users/signup');
   }
   
 })
