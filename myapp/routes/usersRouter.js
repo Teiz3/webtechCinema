@@ -42,7 +42,7 @@ router.get('/logout', function (req, res) {
       res.status(500).send('Server Error');
       return;
     }
-    res.redirect('/users/login'); // Redirect to login page after logout
+    res.redirect('../users/login'); // Redirect to login page after logout
   });
 });
 
